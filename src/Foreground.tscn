@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/background3.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 512, 98 )
+
+[node name="Foreground" type="Node2D"]
+
+[node name="Field" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Field"]
+position = Vector2( 512, 502 )
+shape = SubResource( 1 )
+
+[node name="Background3" type="Sprite" parent="Field/CollisionShape2D"]
+position = Vector2( 2.12193e-05, 0 )
+scale = Vector2( 0.533333, 0.17963 )
+texture = ExtResource( 1 )
