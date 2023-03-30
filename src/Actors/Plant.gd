@@ -1,5 +1,7 @@
 extends Actor
 
+signal harvested
+
 export var num_crop = 0 #variable global
 export var type_crop = "P" # P = Vegetable, A = Tree, F = Flower
 var num_water = 0 #variable local
@@ -8,7 +10,7 @@ var hp = 70 #hp inicial
 var tex2 = preload("res://Assets/player2.png")
 var tex3 = preload("res://Assets/player3.png")
 onready var Player_sprite = $PlayerSprite #get_node("PlayerSprite")
-
+var name_plant
 
 func _ready():
 	connect("clicked",self, "on_watered")
@@ -22,8 +24,8 @@ func on_watered():
 	elif hp == 80:
 		Player_sprite.texture = tex2
 	elif hp == max_hp:
-		print(type_crop, " ", num_crop, " is fully grown!")
+		print(name_plant, " ", num_crop, " is fully grown!")
 		Player_sprite.texture = tex3
 	elif hp > max_hp:
 		print(type_crop, " ", num_crop, " harvested!")
-		queue_free() #Elimina la planta
+		emit_signal("harvested")
