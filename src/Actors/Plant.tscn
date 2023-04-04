@@ -9,8 +9,9 @@ extents = Vector2( 33, 33 )
 [node name="Plant" type="KinematicBody2D"]
 input_pickable = true
 script = ExtResource( 2 )
+num_crop = null
 
-[node name="PlayerSprite" type="Sprite" parent="."]
+[node name="PlantSprite" type="Sprite" parent="."]
 position = Vector2( 3.8147e-06, -7.62939e-06 )
 scale = Vector2( 0.6875, 0.6875 )
 texture = ExtResource( 1 )
