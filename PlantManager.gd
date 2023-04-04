@@ -44,13 +44,13 @@ func _ready(): #TODO ara mateix aquesta func només s'executa UNA VEGADA. Canvia
 func _process(delta):
 	if Input.is_action_just_pressed("debug_plant"):
 		create_plant()
-	
+	# receive plant id to add it to the habitat.
 # TODO Crear diferents tipus de plantes des del plant manager	
 	
 func create_plant():
 	var nova_planta = Planta.instance() # Afegeix una nova planta a la llista de plantes existents
 	var selected_plant = randi() % Ecosystem.size() #tria un numero random del 0 al (total de plantes existents)
-	nova_planta.set_position(Vector2(rand_range(-200,200), rand_range(-100, 200)))
+	nova_planta.set_position(Vector2(rand_range(-200,200), rand_range(-100, 200))) #TODO SPAWN AREA SIZE
 	habitat[next_id] = nova_planta #afegim la nova planta a la llista de plants
 	add_child(nova_planta)
 	nova_planta.initialize(Ecosystem[selected_plant], next_id)
