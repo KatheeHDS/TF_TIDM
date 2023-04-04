@@ -8,6 +8,7 @@
 [node name="Body" type="Node2D"]
 
 [node name="Background" parent="." instance=ExtResource( 2 )]
+position = Vector2( -2, 2 )
 
 [node name="Middleground" parent="." instance=ExtResource( 3 )]
 
