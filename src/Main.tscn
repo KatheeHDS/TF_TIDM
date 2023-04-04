@@ -16,4 +16,3 @@ position = Vector2( -2, 2 )
 position = Vector2( 0, 1 )
 
 [node name="PlantManager" parent="." instance=ExtResource( 5 )]
-position = Vector2( 513, 112 )

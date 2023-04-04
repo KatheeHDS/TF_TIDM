@@ -37,11 +37,19 @@ var Ecosystem = {
 var next_id = 0
 var habitat = {} # List of plants currently onscreen
  # TODO randomitzar quin tipus de planta es crea
+
+const DELAY = 5
+var time_to_next_plant = DELAY
+
 func _ready(): #TODO ara mateix aquesta func només s'executa UNA VEGADA. Canviar pq s'executi quan llegeix la senyal harvest
 	create_plant()
 	
 	
 func _process(delta):
+	time_to_next_plant -= delta # TODO comptar temps
+	if time_to_next_plant <= 0 :
+		create_plant()
+	# print("temps passat ", time_to_next_plant)
 	if Input.is_action_just_pressed("debug_plant"):
 		create_plant()
 	# receive plant id to add it to the habitat.
@@ -50,17 +58,20 @@ func _process(delta):
 func create_plant():
 	var nova_planta = Planta.instance() # Afegeix una nova planta a la llista de plantes existents
 	var selected_plant = randi() % Ecosystem.size() #tria un numero random del 0 al (total de plantes existents)
-	nova_planta.set_position(Vector2(rand_range(-200,200), rand_range(-100, 200))) #TODO SPAWN AREA SIZE
+	nova_planta.set_position(Vector2(rand_range(0,920), rand_range(150, 500))) #TODO SPAWN AREA SIZE
+	nova_planta.scale = Vector2(0.5, 0.5)
 	habitat[next_id] = nova_planta #afegim la nova planta a la llista de plants
 	add_child(nova_planta)
 	nova_planta.initialize(Ecosystem[selected_plant], next_id)
 	nova_planta.connect("harvested", self, "on_plant_harvested", [next_id])
 	next_id += 1
+	time_to_next_plant = DELAY
 	
 	
 func on_plant_harvested(id):
 	var plant = habitat[id]
 	print("S'ESTA CRIDANT")
+	create_plant()
 	# emit_signal("to_inventory", plant.tipus Arguments que diguin el tipus de la planta)
 	plant.queue_free() # elimina la planta de pantalla
 	habitat.erase(id) # elimina la planta del diccionari

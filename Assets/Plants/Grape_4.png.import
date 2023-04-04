@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Grape_3-1.png-4d32ad3280b7ac3a659eb0122e7c61e9.stex"
+path="res://.import/Grape_4.png-3c0be7e1c1b3093d1979db82182f61dd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Plants/Grape_3-1.png"
-dest_files=[ "res://.import/Grape_3-1.png-4d32ad3280b7ac3a659eb0122e7c61e9.stex" ]
+source_file="res://Assets/Plants/Grape_4.png"
+dest_files=[ "res://.import/Grape_4.png-3c0be7e1c1b3093d1979db82182f61dd.stex" ]
 
 [params]
 
