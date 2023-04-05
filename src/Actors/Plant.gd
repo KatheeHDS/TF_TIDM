@@ -8,14 +8,19 @@ var sprites = []
 onready var Plant_sprite = $PlantSprite #get_node("PlantSprite")
 var name_plant
 var water # nombre de clicks
-var sun # delta de temps per passar d'stage
+var sun # temps mínim de creixement de la planta
+var sunlight = 0 # delta de temps transcorregut (quantitat de sol rebut per la planta)
 
 func _ready():
-	connect("clicked",self, "on_watered")
+	connect("clicked",self, "on_watered") # DOUBT - What was this for?
+	
+func _process(delta):
+	sunlight += delta # TODO comptar temps
 
 func initialize(plant_data, plant_id):
 	print(plant_data)
-	self.water = plant_data["water"] #
+	self.water = plant_data["water"] # nombre de clicks per a creixement total
+	self.sun = plant_data["sun"] # nombre de segons per a creixement total
 	self.name_plant = plant_data["name"] #
 	self.num_crop = plant_id #Es una script variable que cal exportar!
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_1.png"))
@@ -31,10 +36,10 @@ func on_watered():
 	var percent = float(num_water)/float(water)*100
 	if percent < 0:
 		print("Error en ", name_plant, " ", num_crop, "HP NEGATIU") #DEBUG
-	elif percent > 100:
+	elif percent > 100 && sunlight >= sun:
 		print(name_plant, " ", num_crop, " harvested!")
 		emit_signal("harvested")
-	elif percent >= 80:
+	elif percent >= 80 && sunlight >= sun:
 		print(name_plant, " ", num_crop, " is fully grown!")
 		Plant_sprite.texture = sprites[3]
 	elif percent >= 50:
