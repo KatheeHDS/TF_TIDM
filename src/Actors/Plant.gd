@@ -10,6 +10,7 @@ var name_plant
 var water # nombre de clicks
 var sun # temps mínim de creixement de la planta
 var sunlight = 0 # delta de temps transcorregut (quantitat de sol rebut per la planta)
+var plant_type # variable que desarà el tipus de planta (greenTree)
 
 func _ready():
 	connect("clicked",self, "on_watered") # DOUBT - What was this for?
@@ -22,6 +23,7 @@ func initialize(plant_data, plant_id):
 	self.water = plant_data["water"] # nombre de clicks per a creixement total
 	self.sun = plant_data["sun"] # nombre de segons per a creixement total
 	self.name_plant = plant_data["name"] #
+	self.plant_type = plant_data["color"] + plant_data["type"]
 	self.num_crop = plant_id #Es una script variable que cal exportar!
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_1.png"))
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_2.png"))

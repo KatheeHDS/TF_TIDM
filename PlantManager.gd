@@ -5,43 +5,52 @@ signal to_inventory
 var Planta = preload("res://src/Actors/Plant.tscn")
 # Diccionari = {"id" : ["nom planta", HP inicial, "tipus", "color"],...} 
 var Ecosystem = {
-	0:{name = "Chard", water = 5, sun = 5, type = "crop", color = "green"}, 
-	1:{name = "Tomato", water = 5, sun = 7.5, type = "crop", color = "red"}, 
-	2:{name = "Corn", water = 5, sun = 7.5, type = "crop", color = "blue"},
-	3:{name = "Eggplant", water = 7, sun = 10.5, type = "crop", color = "purple"},
-	4:{name = "Potato", water = 7, sun = 10.5, type = "crop", color = "yellow"},
-	5:{name = "Pumpkin", water = 7, sun = 10.05, type = "crop", color = "orange"},
-	6:{name = "Cabbage", water = 9, sun = 13.5, type = "crop", color = "turquoise"},
-	7:{name = "Truffle", water = 9, sun = 13.5, type = "crop", color = "black"},
-	8:{name = "Turnip", water = 10, sun = 15, type = "crop", color = "white"},
-	9:{name = "Mum", water = 5, sun = 5, type = "flower", color = "green"}, 
-	10:{name = "Rose", water = 5, sun = 5, type = "flower", color = "red"}, 
-	11:{name = "Forget", water = 5, sun = 5, type = "flower", color = "blue"},
-	12:{name = "Violet", water = 7, sun = 7, type = "flower", color = "purple"},
-	13:{name = "Daffodil", water = 7, sun = 7, type = "flower", color = "yellow"},
-	14:{name = "Hibiscus", water = 7, sun = 7, type = "flower", color = "orange"},
-	15:{name = "Hyacynth", water = 9, sun = 9, type = "flower", color = "turquoise"},
-	16:{name = "Tulip", water = 9, sun = 9, type = "tree", color = "black"},
-	17:{name = "Daisy", water = 10, sun = 10, type = "tree", color = "white"},
-	18:{name = "Pear", water = 5, sun = 10, type = "tree", color = "green"}, 
-	19:{name = "Cherry", water = 5, sun = 7.5, type = "tree", color = "red"}, 
-	20:{name = "Blueberry", water = 5, sun = 10, type = "tree", color = "blue"}, #TODO CHANGE COLOR OF SPRITE
-	21:{name = "Grape", water = 7, sun = 14, type = "tree", color = "purple"},
-	22:{name = "Lemon", water = 7, sun = 14, type = "tree", color = "yellow"},
-	23:{name = "Mandarine", water = 7, sun = 14, type = "tree", color = "orange"},
-	24:{name = "Figtree", water = 9, sun = 18, type = "tree", color = "turquoise"}, #TODO CHANGE COLOR OF SPRITE
-	25:{name = "Blackberry", water = 9, sun = 18, type = "tree", color = "black"},
-	26:{name = "Apple", water = 10, sun = 20, type = "tree", color = "white"},
+	0:{name = "Chard", water = 5, sun = 5, type = "Crop", color = "green"}, 
+	1:{name = "Tomato", water = 5, sun = 7.5, type = "Crop", color = "red"}, 
+	2:{name = "Corn", water = 5, sun = 7.5, type = "Crop", color = "blue"},
+	3:{name = "Eggplant", water = 7, sun = 10.5, type = "Crop", color = "purple"},
+	4:{name = "Potato", water = 7, sun = 10.5, type = "Crop", color = "yellow"},
+	5:{name = "Pumpkin", water = 7, sun = 10.05, type = "Crop", color = "orange"},
+	6:{name = "Cabbage", water = 9, sun = 13.5, type = "Crop", color = "teal"},
+	7:{name = "Truffle", water = 9, sun = 13.5, type = "Crop", color = "black"},
+	8:{name = "Turnip", water = 10, sun = 15, type = "Crop", color = "white"},
+	9:{name = "Mum", water = 5, sun = 5, type = "Flower", color = "green"}, 
+	10:{name = "Rose", water = 5, sun = 5, type = "Flower", color = "red"}, 
+	11:{name = "Forget", water = 5, sun = 5, type = "Flower", color = "blue"},
+	12:{name = "Violet", water = 7, sun = 7, type = "Flower", color = "purple"},
+	13:{name = "Daffodil", water = 7, sun = 7, type = "Flower", color = "yellow"},
+	14:{name = "Hibiscus", water = 7, sun = 7, type = "Flower", color = "orange"},
+	15:{name = "Hyacynth", water = 9, sun = 9, type = "Flower", color = "teal"},
+	16:{name = "Tulip", water = 9, sun = 9, type = "Tree", color = "black"},
+	17:{name = "Daisy", water = 10, sun = 10, type = "Tree", color = "white"},
+	18:{name = "Pear", water = 5, sun = 10, type = "Tree", color = "green"}, 
+	19:{name = "Cherry", water = 5, sun = 7.5, type = "Tree", color = "red"}, 
+	20:{name = "Blueberry", water = 5, sun = 10, type = "Tree", color = "blue"}, #TODO CHANGE COLOR OF SPRITE
+	21:{name = "Grape", water = 7, sun = 14, type = "Tree", color = "purple"},
+	22:{name = "Lemon", water = 7, sun = 14, type = "Tree", color = "yellow"},
+	23:{name = "Mandarine", water = 7, sun = 14, type = "Tree", color = "orange"},
+	24:{name = "Figtree", water = 9, sun = 18, type = "Tree", color = "teal"}, #TODO CHANGE COLOR OF SPRITE
+	25:{name = "Blackberry", water = 9, sun = 18, type = "Tree", color = "black"},
+	26:{name = "Apple", water = 10, sun = 20, type = "Tree", color = "white"},
 }
 # crear diccionari on s'emmagatzemin les plantes creades
-var next_id = 0
+var next_id = 0 #Serveix per al queuefree
 var habitat = {} # List of plants currently onscreen
- # TODO randomitzar quin tipus de planta es crea
+ # TODO DES-Randomitzar quin tipus de planta es crea
+
+var statistics = {} # Compta quantes plantes de cada tipus s'han collit
+# crear diccionari
+# crear una nova funció que es digui increase stats: rebrà el tipus i color de la planta 
+# i modificarà el diccionari d'statistics introduïnt-hi les dades noves
+# incrementarà en 1 el valor associat a la clau, però a més la primera cosa que haurà de fer és comprovar si la clau no existeix:
+# si no existeix la crearà i li donarà un valor inicial de 1
+# mètode HAS de godot, research (if statistics.has cosa, diccionari[tipus]+=1, else diccionari[tipus]=1) 
+
 
 const DELAY = 5
 var time_to_next_plant = DELAY
 
-func _ready(): #TODO ara mateix aquesta func només s'executa UNA VEGADA. Canviar pq s'executi quan llegeix la senyal harvest
+func _ready(): 
 	create_plant()
 	
 	
@@ -68,8 +77,17 @@ func create_plant():
 	time_to_next_plant = DELAY
 	
 	
+func increase_stats(plant_type):
+	if statistics.has(plant_type):
+		statistics[plant_type] += 1
+		
+	else :
+		statistics[plant_type] = 1
+	print("Number of species " + str(statistics))
+	
 func on_plant_harvested(id):
 	var plant = habitat[id]
+	increase_stats(plant.plant_type)
 	print("S'ESTA CRIDANT")
 	create_plant()
 	# emit_signal("to_inventory", plant.tipus Arguments que diguin el tipus de la planta)
