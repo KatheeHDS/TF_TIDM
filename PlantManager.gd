@@ -4,7 +4,9 @@ signal to_inventory
 
 var Planta = preload("res://src/Actors/Plant.tscn")
 # Diccionari = {"id" : ["nom planta", HP inicial, "tipus", "color"],...} 
-var Ecosystem = {
+var data_reader = preload("res://src/data_reader.gd")
+
+var Ecosystem = { #TODO passar Ecosystem a CSV 
 	0:{name = "Chard", water = 5, sun = 5, type = "Crop", color = "green"}, 
 	1:{name = "Tomato", water = 5, sun = 7.5, type = "Crop", color = "red"}, 
 	2:{name = "Corn", water = 5, sun = 7.5, type = "Crop", color = "blue"},
@@ -36,22 +38,19 @@ var Ecosystem = {
 # crear diccionari on s'emmagatzemin les plantes creades
 var next_id = 0 #Serveix per al queuefree
 var habitat = {} # List of plants currently onscreen
- # TODO DES-Randomitzar quin tipus de planta es crea
-
+ # WIP DES-Randomitzar quin tipus de planta es crea
+var biome = {}
 var statistics = {} # Compta quantes plantes de cada tipus s'han collit
-# crear diccionari
-# crear una nova funció que es digui increase stats: rebrà el tipus i color de la planta 
-# i modificarà el diccionari d'statistics introduïnt-hi les dades noves
-# incrementarà en 1 el valor associat a la clau, però a més la primera cosa que haurà de fer és comprovar si la clau no existeix:
-# si no existeix la crearà i li donarà un valor inicial de 1
-# mètode HAS de godot, research (if statistics.has cosa, diccionari[tipus]+=1, else diccionari[tipus]=1) 
-
+var unlocks # stores prerequisites to unlock plants
 
 const DELAY = 5
 var time_to_next_plant = DELAY
 
 func _ready(): 
+	var reader = data_reader.new()
+	unlocks = reader.read_unlocks_data() #initialize unlocks table with data from csv .data
 	create_plant()
+	biome = {}
 	
 	
 func _process(delta):
@@ -61,22 +60,36 @@ func _process(delta):
 	# print("temps passat ", time_to_next_plant)
 	if Input.is_action_just_pressed("debug_plant"):
 		create_plant()
-	# receive plant id to add it to the habitat.
-# TODO Crear diferents tipus de plantes des del plant manager	
 	
 func create_plant():
 	var nova_planta = Planta.instance() # Afegeix una nova planta a la llista de plantes existents
+	# TODO CANVIAR ECOSYSTEM A BIOME
 	var selected_plant = randi() % Ecosystem.size() #tria un numero random del 0 al (total de plantes existents)
 	nova_planta.set_position(Vector2(rand_range(0,920), rand_range(150, 500))) #TODO SPAWN AREA SIZE
 	nova_planta.scale = Vector2(0.5, 0.5)
 	habitat[next_id] = nova_planta #afegim la nova planta a la llista de plants
 	add_child(nova_planta)
+	#TODO CANVIAR ECOSYSTEM A BIOME
 	nova_planta.initialize(Ecosystem[selected_plant], next_id)
 	nova_planta.connect("harvested", self, "on_plant_harvested", [next_id])
 	next_id += 1
 	time_to_next_plant = DELAY
 	
-	
+func calculate_biome():
+	if 1 : # utilitzant unlocks i statistics calcular quines plantes compleixen els requisits
+		#TODO: crear BUCLE que recorri tots els requisits de la taula unlocks 
+		# per recorrer un diccionari fer un bucle que iteri sobre les keys (funció godot -> mètode diccionari.keys)
+		# per accedir a les values fem servir claudators diccionari[key]
+		# el value serà una llista de reqs. Comprovar si cada element es compleix.
+		#if tots requisits then append la clau nom_planta a la llista biome (biome.append)
+		
+		#TODO: funcio creixement
+		# implementar una funcio que donada una planta i un estadi de creixement calculi 
+		# quants clicks ha de rebre la planta i quants segons de sol ha de rebre en aquell estadi
+		# valor de sol total * fracció corresponent i arrodonir cap amunt.
+		
+		print("placeholder")
+
 func increase_stats(plant_type):
 	if statistics.has(plant_type):
 		statistics[plant_type] += 1

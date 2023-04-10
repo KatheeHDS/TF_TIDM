@@ -13,7 +13,7 @@ var sunlight = 0 # delta de temps transcorregut (quantitat de sol rebut per la p
 var plant_type # variable que desarà el tipus de planta (greenTree)
 
 func _ready():
-	connect("clicked",self, "on_watered") # DOUBT - What was this for?
+	connect("clicked", self, "on_watered") #connects signal clicked to on_watered function in this script (self)
 	
 func _process(delta):
 	sunlight += delta # TODO comptar temps
@@ -31,7 +31,7 @@ func initialize(plant_data, plant_id):
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_4.png"))
 	Plant_sprite.texture = sprites[0]
 	
-func on_watered():
+func on_watered(): #TODO: FIX WATER/SUN BUG
 	num_water += 1 #DEBUG counter
 	print(name_plant, " ", num_crop , " regada " , num_water , " vegades.")
 	#water += 10 #increase value of water by 10 points
