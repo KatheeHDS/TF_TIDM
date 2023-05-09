@@ -11,6 +11,7 @@ var water # nombre de clicks
 var sun # temps mínim de creixement de la planta
 var sunlight = 0 # delta de temps transcorregut (quantitat de sol rebut per la planta)
 var plant_type # variable que desarà el tipus de planta (greenTree)
+var growth_stage = 1 # TODO DOCUMENTACIO
 
 func _ready():
 	connect("clicked", self, "on_watered") #connects signal clicked to on_watered function in this script (self)
@@ -31,6 +32,19 @@ func initialize(plant_data, plant_id):
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_4.png"))
 	Plant_sprite.texture = sprites[0]
 	
+func get_water_amount_for_growth_stage(growth_stage):
+	if growth_stage <= 3:
+		return ceil(self.water * 0.3333)
+	else: 
+		return 1
+	
+func get_sun_amount_for_growth_stage(growth_stage):
+	if growth_stage <= 3:
+		return ceil(self.sun * 0.3333)
+	else:
+		return 1
+		
+
 func on_watered(): #TODO: FIX WATER/SUN BUG
 	num_water += 1 #DEBUG counter
 	print(name_plant, " ", num_crop , " regada " , num_water , " vegades.")
