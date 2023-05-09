@@ -12,7 +12,7 @@ func _ready():
 func _on_input_event(_viewport, event: InputEvent, _shape_idx):
 	if event is InputEventMouseButton: 
 		if event.button_index == BUTTON_LEFT and event.pressed:
-			print("clic")
+			# print("clic")
 			emit_signal("clicked")
 
 
