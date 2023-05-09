@@ -65,7 +65,7 @@ func create_plant():
 	var nova_planta = Planta.instance() # Afegeix una nova planta a la llista de plantes existents
 	# TODO CANVIAR ECOSYSTEM A BIOME
 	var selected_plant = randi() % Ecosystem.size() #tria un numero random del 0 al (total de plantes existents)
-	nova_planta.set_position(Vector2(rand_range(0,920), rand_range(150, 500))) #TODO SPAWN AREA SIZE
+	nova_planta.set_position(Vector2(rand_range(0,960), rand_range(150, 500))) #TODO SPAWN AREA SIZE
 	nova_planta.scale = Vector2(0.5, 0.5)
 	habitat[next_id] = nova_planta #afegim la nova planta a la llista de plants
 	add_child(nova_planta)

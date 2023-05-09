@@ -1,11 +1,11 @@
 extends Node2D
 
 var sprites = [
-	preload("res://Assets/Plants/Clock_0.png"),
-	preload("res://Assets/Plants/Clock_1.png"),
-	preload("res://Assets/Plants/Clock_2.png"),
-	preload("res://Assets/Plants/Clock_3.png"),
-	preload("res://Assets/Plants/Clock_4.png"),
+	preload("res://Assets/GUI/Clock_0.png"),
+	preload("res://Assets/GUI/Clock_1.png"),
+	preload("res://Assets/GUI/Clock_2.png"),
+	preload("res://Assets/GUI/Clock_3.png"),
+	preload("res://Assets/GUI/Clock_4.png"),
 ]
 
 func set_amount(fraction):

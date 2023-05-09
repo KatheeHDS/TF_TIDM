@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Clock_3.png-4c2b8a345ee34af4039bbe24dec9de1a.stex"
+path="res://.import/Button_3_Pressed.png-f9848f07f048b1ee96501c36f3a742c7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Plants/Clock_3.png"
-dest_files=[ "res://.import/Clock_3.png-4c2b8a345ee34af4039bbe24dec9de1a.stex" ]
+source_file="res://Assets/GUI/Button_3_Pressed.png"
+dest_files=[ "res://.import/Button_3_Pressed.png-f9848f07f048b1ee96501c36f3a742c7.stex" ]
 
 [params]
 

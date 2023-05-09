@@ -1,6 +1,7 @@
 extends Node2D
 
 signal start_game
+signal options_popup
 signal exit_game
 
 func _ready():
