@@ -29,21 +29,24 @@ func initialize(plant_data, plant_id):
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_4.png"))
 	Plant_sprite.texture = sprites[0]
 	
-func get_max_water_amount_for_growth_stage(growth_stage):
+func get_required_water_amount_for_growth_stage(growth_stage):
 	if growth_stage <= 3:
 		return ceil(self.max_water * 0.3333)
 	else: 
 		return 1
 	
-func get_max_sun_amount_for_growth_stage(growth_stage):
-	if growth_stage <= 3:
-		return ceil(self.max_sun * 0.3333)
+func get_required_sun_amount_for_growth_stage(growth_stage):
+	var sun_amount = 0
+	if growth_stage == 4:
+		return 0
 	else:
-		return 1
-		
+		for _i in range(0, growth_stage):
+			sun_amount += self.max_sun * 0.3333
+		return sun_amount
+
 
 func on_watered():
-	var max_stage_water = get_max_water_amount_for_growth_stage(self.growth_stage)
+	var max_stage_water = get_required_water_amount_for_growth_stage(self.growth_stage)
 	if num_water < max_stage_water:
 		num_water += 1
 		print("watered ", num_water)
@@ -52,10 +55,11 @@ func on_watered():
 		
 func _process(delta):
 	sunlight += delta # TODO comptar temps
-	## print("sunlight ", sunlight)
-	var max_stage_sun = get_max_sun_amount_for_growth_stage(self.growth_stage)
-	var max_stage_water = get_max_water_amount_for_growth_stage(self.growth_stage)
-	if sunlight >= max_stage_sun && num_water >= max_stage_water:
+	var required_stage_sun = get_required_sun_amount_for_growth_stage(self.growth_stage)
+	var required_stage_water = get_required_water_amount_for_growth_stage(self.growth_stage)
+	$Clock.set_amount(sunlight/self.max_sun)
+	
+	if sunlight >= required_stage_sun && num_water >= required_stage_water:
 		if growth_stage < 4:
 			increase_growth_stage()
 		else:
@@ -64,4 +68,5 @@ func _process(delta):
 func increase_growth_stage():
 	self.growth_stage += 1
 	Plant_sprite.texture = sprites[self.growth_stage-1]
+	
 	num_water = 0
