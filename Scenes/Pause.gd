@@ -10,11 +10,13 @@ func _ready():
 	get_node("ExitButton").connect("pressed", self, "exit_game")
 	
 func on_help_clicked():
+	SoundManager.sfx("error")
 	emit_signal("help_popup")
 
 func on_options_clicked():
+	SoundManager.sfx("error")
 	emit_signal("options_popup")
 
 func exit_game():
-	print("NO VA?")
+	SoundManager.sfx("click")
 	emit_signal("exit_game")

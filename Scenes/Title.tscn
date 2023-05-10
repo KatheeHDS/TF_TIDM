@@ -91,7 +91,7 @@ text = "EXIT"
 align = 1
 valign = 1
 
-[node name="OptionsButton" type="TextureButton" parent="."]
+[node name="ConfigButton" type="TextureButton" parent="."]
 margin_left = 628.0
 margin_top = 300.0
 margin_right = 1138.0
@@ -101,7 +101,7 @@ texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 10 )
 texture_hover = ExtResource( 9 )
 
-[node name="Options" type="Label" parent="OptionsButton"]
+[node name="Config" type="Label" parent="ConfigButton"]
 anchor_right = 1.0
 anchor_bottom = 0.241
 margin_left = -115.843
@@ -110,6 +110,6 @@ margin_right = 101.157
 margin_bottom = 147.163
 rect_pivot_offset = Vector2( 255, 98 )
 custom_fonts/font = SubResource( 1 )
-text = "OPTIONS"
+text = "SETTINGS"
 align = 1
 valign = 1

@@ -38,6 +38,7 @@ stretch_mode = 5
 [node name="PlantManager" parent="." instance=ExtResource( 5 )]
 
 [node name="Apple1" type="Sprite" parent="."]
+visible = false
 modulate = Color( 2, 2, 2, 1 )
 position = Vector2( 742, 341 )
 texture = ExtResource( 6 )

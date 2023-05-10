@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mixkit-quick-rope-throw-730.mp3-5e177dcf541fdc0e0ee1ec02d798f546.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/mixkit-quick-rope-throw-730.mp3"
+dest_files=[ "res://.import/mixkit-quick-rope-throw-730.mp3-5e177dcf541fdc0e0ee1ec02d798f546.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

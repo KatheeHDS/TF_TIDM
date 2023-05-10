@@ -12,15 +12,12 @@ var max_sun # temps mínim de creixement de la planta
 var sunlight = 0 # delta de temps transcorregut (quantitat de sol rebut per la planta)
 var plant_type # variable que desarà el tipus de planta (greenTree)
 var growth_stage = 1 # TODO DOCUMENTACIO
-var sound_sprout = false
-var sound_water = false
-var sound_dry = false
-var sound_grow = false
-var sound_pickup = false
+
 
 func _ready():
 	connect("clicked", self, "on_watered") #connects signal clicked to on_watered function in this script (self)
 	#PLAY SOUND SPROUT
+	SoundManager.sfx("sprout")
 	
 func initialize(plant_data, plant_id):
 	print(plant_data)
@@ -58,9 +55,11 @@ func on_watered():
 		num_water += 1
 		print("watered ", num_water)
 		# PLAY SOUND WATER
+		SoundManager.sfx("water")
 	else:
 		print("no accepta més aigua")
 		# PLAY SOUND DRY
+		SoundManager.sfx("dry")
 		
 func _process(delta):
 	sunlight += delta # TODO comptar temps
@@ -72,9 +71,11 @@ func _process(delta):
 		if growth_stage < 4:
 			increase_growth_stage()
 			# PLAY SOUND GROW
+			SoundManager.sfx("grow")
 		else:
 			emit_signal("harvested")
 			# PLAY SOUND PICKUP
+			SoundManager.sfx("pickup")
 
 func increase_growth_stage():
 	self.growth_stage += 1
