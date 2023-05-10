@@ -24,6 +24,10 @@ config/name="TF"
 run/main_scene="res://Scenes/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+SoundManager="*res://Scenes/SoundManager.tscn"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

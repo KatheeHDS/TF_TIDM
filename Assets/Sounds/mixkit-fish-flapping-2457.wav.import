@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mixkit-fish-flapping-2457.wav-9268ed69f97e06221f429c30c7311ca7.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/mixkit-fish-flapping-2457.wav"
+dest_files=[ "res://.import/mixkit-fish-flapping-2457.wav-9268ed69f97e06221f429c30c7311ca7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

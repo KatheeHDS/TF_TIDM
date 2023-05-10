@@ -34,10 +34,10 @@ align = 1
 valign = 1
 
 [node name="BGM" type="Label" parent="."]
-margin_left = 448.0
-margin_top = 291.0
-margin_right = 534.0
-margin_bottom = 305.0
+margin_left = 367.0
+margin_top = 290.0
+margin_right = 453.0
+margin_bottom = 304.0
 text = "BGM"
 
 [node name="CheckBox" type="CheckBox" parent="BGM"]
@@ -47,10 +47,10 @@ margin_right = -5.0
 margin_bottom = 18.0
 
 [node name="Sound Effects" type="Label" parent="."]
-margin_left = 446.0
-margin_top = 325.0
-margin_right = 532.0
-margin_bottom = 339.0
+margin_left = 366.0
+margin_top = 324.0
+margin_right = 452.0
+margin_bottom = 338.0
 text = "Sound effects"
 
 [node name="CheckBox" type="CheckBox" parent="Sound Effects"]
@@ -60,10 +60,10 @@ margin_right = -4.0
 margin_bottom = 18.0
 
 [node name="Visual Effects" type="Label" parent="."]
-margin_left = 447.0
-margin_top = 356.0
-margin_right = 532.0
-margin_bottom = 370.0
+margin_left = 367.0
+margin_top = 354.0
+margin_right = 452.0
+margin_bottom = 368.0
 text = "Visual effects"
 
 [node name="CheckBox" type="CheckBox" parent="Visual Effects"]

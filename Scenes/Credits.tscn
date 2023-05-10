@@ -42,10 +42,13 @@ margin_right = 71.0
 margin_bottom = 311.36
 rect_pivot_offset = Vector2( 255, 98 )
 custom_fonts/font = SubResource( 2 )
-text = "BGM:
-SFX:
+text = "BGM
+Windswept by Kevin MacLeod
 
-Special thanks:"
+SFX
+Mixkit
+
+VFX"
 align = 1
 valign = 1
 

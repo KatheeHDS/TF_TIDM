@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Kevin MacLeod - Windswept.mp3-d30764e9a0cbcc6658b5db5a7aad6873.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Kevin MacLeod - Windswept.mp3"
+dest_files=[ "res://.import/Kevin MacLeod - Windswept.mp3-d30764e9a0cbcc6658b5db5a7aad6873.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

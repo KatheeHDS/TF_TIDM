@@ -101,7 +101,7 @@ func increase_stats(plant_type):
 func on_plant_harvested(id):
 	var plant = habitat[id]
 	increase_stats(plant.plant_type)
-	print("S'ESTA CRIDANT")
+	print("PLANTA COLLIDA")
 	create_plant()
 	# emit_signal("to_inventory", plant.tipus Arguments que diguin el tipus de la planta)
 	plant.queue_free() # elimina la planta de pantalla
