@@ -7,7 +7,7 @@ var Planta = preload("res://src/Actors/Plant.tscn")
 var data_reader = preload("res://src/data_reader.gd")
 
 var Ecosystem = { #TODO passar Ecosystem a CSV 
-	0:{name = "Chard", water = 5, sun = 5, type = "Crop", color = "green"}, 
+	0:{name = "Chard", water = 5, sun = 5, type = "Crop", color = "green", size_1_x = 25, size_1_y = 30}, 
 	1:{name = "Tomato", water = 5, sun = 7.5, type = "Crop", color = "red"}, 
 	2:{name = "Corn", water = 5, sun = 7.5, type = "Crop", color = "blue"},
 	3:{name = "Eggplant", water = 7, sun = 10.5, type = "Crop", color = "purple"},

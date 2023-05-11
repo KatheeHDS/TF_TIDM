@@ -30,7 +30,7 @@ func initialize(plant_data, plant_id):
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_2.png"))
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_3.png"))
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_4.png"))
-	Plant_sprite.texture = sprites[0]
+	set_sprite(sprites[0])
 	
 	
 func get_required_water_amount_for_growth_stage(growth_stage):
@@ -79,6 +79,11 @@ func _process(delta):
 
 func increase_growth_stage():
 	self.growth_stage += 1
-	Plant_sprite.texture = sprites[self.growth_stage-1]
-	
+	set_sprite(sprites[self.growth_stage - 1])
 	num_water = 0
+
+func set_sprite(texture):
+	Plant_sprite.texture = texture
+	Plant_sprite.centered = true
+	Plant_sprite.offset.y = -texture.get_height() / 2
+	
