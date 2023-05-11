@@ -6,42 +6,16 @@ var Planta = preload("res://src/Actors/Plant.tscn")
 # Diccionari = {"id" : ["nom planta", HP inicial, "tipus", "color"],...} 
 var data_reader = preload("res://src/data_reader.gd")
 
-var Ecosystem = { #TODO passar Ecosystem a CSV 
-	0:{name = "Chard", water = 5, sun = 5, type = "Crop", color = "green", size_1_x = 25, size_1_y = 30}, 
-	1:{name = "Tomato", water = 5, sun = 7.5, type = "Crop", color = "red"}, 
-	2:{name = "Corn", water = 5, sun = 7.5, type = "Crop", color = "blue"},
-	3:{name = "Eggplant", water = 7, sun = 10.5, type = "Crop", color = "purple"},
-	4:{name = "Potato", water = 7, sun = 10.5, type = "Crop", color = "yellow"},
-	5:{name = "Pumpkin", water = 7, sun = 10.05, type = "Crop", color = "orange"},
-	6:{name = "Cabbage", water = 9, sun = 13.5, type = "Crop", color = "teal"},
-	7:{name = "Truffle", water = 9, sun = 13.5, type = "Crop", color = "black"},
-	8:{name = "Turnip", water = 10, sun = 15, type = "Crop", color = "white"},
-	9:{name = "Mum", water = 5, sun = 5, type = "Flower", color = "green"}, 
-	10:{name = "Rose", water = 5, sun = 5, type = "Flower", color = "red"}, 
-	11:{name = "Forget", water = 5, sun = 5, type = "Flower", color = "blue"},
-	12:{name = "Violet", water = 7, sun = 7, type = "Flower", color = "purple"},
-	13:{name = "Daffodil", water = 7, sun = 7, type = "Flower", color = "yellow"},
-	14:{name = "Hibiscus", water = 7, sun = 7, type = "Flower", color = "orange"},
-	15:{name = "Hyacynth", water = 9, sun = 9, type = "Flower", color = "teal"},
-	16:{name = "Tulip", water = 9, sun = 9, type = "Tree", color = "black"},
-	17:{name = "Daisy", water = 10, sun = 10, type = "Tree", color = "white"},
-	18:{name = "Pear", water = 5, sun = 10, type = "Tree", color = "green"}, 
-	19:{name = "Cherry", water = 5, sun = 7.5, type = "Tree", color = "red"}, 
-	20:{name = "Blueberry", water = 5, sun = 10, type = "Tree", color = "blue"}, #TODO CHANGE COLOR OF SPRITE
-	21:{name = "Grape", water = 7, sun = 14, type = "Tree", color = "purple"},
-	22:{name = "Lemon", water = 7, sun = 14, type = "Tree", color = "yellow"},
-	23:{name = "Mandarine", water = 7, sun = 14, type = "Tree", color = "orange"},
-	24:{name = "Figtree", water = 9, sun = 18, type = "Tree", color = "teal"}, #TODO CHANGE COLOR OF SPRITE
-	25:{name = "Blackberry", water = 9, sun = 18, type = "Tree", color = "black"},
-	26:{name = "Apple", water = 10, sun = 20, type = "Tree", color = "white"},
-}
+
 # crear diccionari on s'emmagatzemin les plantes creades
 var next_id = 0 #Serveix per al queuefree
 var habitat = {} # List of plants currently onscreen
  # WIP DES-Randomitzar quin tipus de planta es crea
 var biome = {}
 var statistics = {} # Compta quantes plantes de cada tipus s'han collit
+
 var unlocks # stores prerequisites to unlock plants
+var Ecosystem
 
 const DELAY = 5
 var time_to_next_plant = DELAY
@@ -49,6 +23,7 @@ var time_to_next_plant = DELAY
 func _ready(): 
 	var reader = data_reader.new()
 	unlocks = reader.read_unlocks_data() #initialize unlocks table with data from csv .data
+	Ecosystem = reader.read_ecosystem_data()
 	create_plant()
 	biome = {}
 	
@@ -70,7 +45,7 @@ func create_plant():
 	habitat[next_id] = nova_planta #afegim la nova planta a la llista de plants
 	add_child(nova_planta)
 	#TODO CANVIAR ECOSYSTEM A BIOME
-	nova_planta.initialize(Ecosystem[selected_plant], next_id)
+	nova_planta.initialize(Ecosystem.values()[selected_plant], next_id)
 	nova_planta.connect("harvested", self, "on_plant_harvested", [next_id])
 	next_id += 1
 	time_to_next_plant = DELAY

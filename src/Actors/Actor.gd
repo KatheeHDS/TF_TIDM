@@ -15,4 +15,5 @@ func _on_input_event(_viewport, event: InputEvent, _shape_idx):
 			# print("clic")
 			emit_signal("clicked")
 
+# Funció On Hover Canvia El Punter
 
