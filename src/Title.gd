@@ -5,9 +5,9 @@ signal config_popup
 signal exit_game
 
 func _ready():
-	get_node("StartButton").connect("pressed", self, "on_game_start")
-	get_node("ExitButton").connect("pressed", self, "exit_game")
-	get_node("ConfigButton").connect("pressed", self, "open_config")
+	assert(get_node("StartButton").connect("pressed", self, "on_game_start") == OK)
+	assert(get_node("ExitButton").connect("pressed", self, "exit_game") == OK)
+	assert(get_node("ConfigButton").connect("pressed", self, "open_config") == OK)
 	
 func on_game_start():
 	SoundManager.sfx("click")

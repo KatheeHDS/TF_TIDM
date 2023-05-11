@@ -53,7 +53,6 @@ func read_ecosystem_data():
 		Ecosystem[plant_info.name] = plant_info
 		line =  f.get_csv_line(";")
 		
-	print(Ecosystem)
-	
+		
 	return Ecosystem
 	

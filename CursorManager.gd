@@ -1,16 +1,22 @@
 extends Node
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+# Load the custom images for the mouse cursor.
+var default = load("res://Assets/GUI/Cursor/CURSOR_DEFAULT.png")
+var point = load("res://Assets/GUI/Cursor/CURSOR_POINT.png")
+var water = load("res://Assets/GUI/Cursor/CURSOR_WATER.png")
+var pick = load("res://Assets/GUI/Cursor/CURSOR_PICK.png")
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
+func set_cursor(cursor_name):
+	if cursor_name == "water":
+		Input.set_custom_mouse_cursor(water)
+	elif cursor_name == "default":
+		Input.set_custom_mouse_cursor(default)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func on_hovered():
+	Input.set_custom_mouse_cursor(point)
+	print("Hoverat")

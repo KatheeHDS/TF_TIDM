@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 SoundManager="*res://Scenes/SoundManager.tscn"
+CursorManager="*res://Scenes/CursorManager.tscn"
 
 [gui]
 

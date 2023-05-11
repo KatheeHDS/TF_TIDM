@@ -5,14 +5,15 @@ var GameTitle = preload("res://Scenes/Title.tscn")
 var PauseMenu = preload("res://Scenes/Pause.tscn")
 var pause_opened = false
 var CreditsScreen = preload("res://Scenes/Credits.tscn")
-
+var default = load("res://Assets/GUI/Cursor/CURSOR_DEFAULT.png")
 
 func _ready():
 	print ("hola")
 	var splash = SplashScreen.instance()
 	splash.name = "splash"
 	add_child(splash)
-	yield(get_tree().create_timer(2.0), "timeout")
+	Input.set_custom_mouse_cursor(default) # sets custom cursor
+	yield(get_tree().create_timer(2.0), "timeout") #splashscreen timer
 	splash.queue_free()
 	var title = GameTitle.instance()
 	title.name = "title"

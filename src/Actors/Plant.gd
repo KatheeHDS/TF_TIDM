@@ -18,15 +18,23 @@ var sunlight = 0 # delta de temps transcorregut (quantitat de sol rebut per la p
 var plant_type # variable que desarà el tipus de planta (greenTree)
 var growth_stage = 1 # TODO DOCUMENTACIO
 
+var hovering = false
+var waterable = true
+var harvestable = false
+
 
 
 func _ready():
-	connect("clicked", self, "on_watered") #connects signal clicked to on_watered function in this script (self)
+	assert(connect("clicked", self, "on_watered") == OK) #connects signal clicked to on_watered function in this script (self)
+	assert(connect("mouse_entered", self, "on_mouse_enter") == OK)
+	assert(connect("mouse_exited", self, "on_mouse_exit") == OK)
+	
 	#PLAY SOUND SPROUT
 	SoundManager.sfx("sprout")
 	
 func initialize(plant_data, plant_id):
 	print(plant_data)
+	
 	self.max_water = plant_data["water"] # nombre de clicks per a creixement total
 	self.max_sun = plant_data["sun"] # nombre de segons per a creixement total
 	self.name_plant = plant_data["name"] #
@@ -40,39 +48,55 @@ func initialize(plant_data, plant_id):
 	set_sprite(sprites[0], collision_sizes[0])
 	
 	
-func get_required_water_amount_for_growth_stage(growth_stage):
-	if growth_stage <= 3:
+func get_required_water_amount_for_growth_stage(stage):
+	if stage <= 3:
 		return ceil(self.max_water * 0.3333)
 	else: 
 		return 1
 	
-func get_required_sun_amount_for_growth_stage(growth_stage):
+func get_required_sun_amount_for_growth_stage(stage):
 	var sun_amount = 0
-	if growth_stage == 4:
+	if stage == 4:
+		harvestable = true
 		return 0
 	else:
-		for _i in range(0, growth_stage):
+		for _i in range(0, stage):
 			sun_amount += self.max_sun * 0.3333
+			harvestable = false
 		return sun_amount
 
 
 func on_watered():
 	var max_stage_water = get_required_water_amount_for_growth_stage(self.growth_stage)
 	if num_water < max_stage_water:
+		waterable = true
 		num_water += 1
 		print("watered ", num_water)
 		# PLAY SOUND WATER
 		SoundManager.sfx("water")
 	else:
+		waterable = false
 		print("no accepta més aigua")
 		# PLAY SOUND DRY
 		SoundManager.sfx("dry")
+		# CursorManager.set_cursor("default")
+		
 		
 func _process(delta):
 	sunlight += delta # TODO comptar temps
 	var required_stage_sun = get_required_sun_amount_for_growth_stage(self.growth_stage)
 	var required_stage_water = get_required_water_amount_for_growth_stage(self.growth_stage)
 	# $Clock.set_amount(sunlight/self.max_sun)
+	
+	# Cursor sprites: VISUAL FEEDBACK
+	if hovering:
+		if growth_stage < 4 && waterable:
+			CursorManager.set_cursor("water")
+		elif harvestable:
+			CursorManager.set_cursor("pick")
+		else:
+			CursorManager.set_cursor("default")
+		
 	
 	if sunlight >= required_stage_sun && num_water >= required_stage_water:
 		if growth_stage < 4:
@@ -101,5 +125,11 @@ func set_sprite(texture, collision_size):
 	Collision_shape.position.x = 0
 	Collision_shape.position.y = -collision_size.y * 0.5 * SCALING
 	
+func on_mouse_enter():
+	hovering = true
 	
+	
+func on_mouse_exit():
+	hovering = false
+	CursorManager.set_cursor("default")
 	

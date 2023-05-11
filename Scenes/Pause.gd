@@ -5,9 +5,9 @@ signal help_popup
 signal exit_game
 
 func _ready():
-	get_node("HelpButton").connect("pressed", self, "on_help_clicked")
-	get_node("OptionsButton").connect("pressed", self, "on_options_clicked")	
-	get_node("ExitButton").connect("pressed", self, "exit_game")
+	assert(get_node("HelpButton").connect("pressed", self, "on_help_clicked") == OK)
+	assert(get_node("OptionsButton").connect("pressed", self, "on_options_clicked") == OK)
+	assert(get_node("ExitButton").connect("pressed", self, "exit_game") == OK)
 	
 func on_help_clicked():
 	SoundManager.sfx("error")

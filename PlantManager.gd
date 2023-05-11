@@ -1,6 +1,6 @@
 extends Node
 #Aquí anirà la generació de plantes
-signal to_inventory
+# signal to_inventory
 
 var Planta = preload("res://src/Actors/Plant.tscn")
 # Diccionari = {"id" : ["nom planta", HP inicial, "tipus", "color"],...} 
@@ -77,10 +77,12 @@ func on_plant_harvested(id):
 	var plant = habitat[id]
 	increase_stats(plant.plant_type)
 	print("PLANTA COLLIDA")
-	create_plant()
-	# emit_signal("to_inventory", plant.tipus Arguments que diguin el tipus de la planta)
 	plant.queue_free() # elimina la planta de pantalla
 	habitat.erase(id) # elimina la planta del diccionari
+	yield(get_tree().create_timer(1), "timeout")
+	create_plant()
+	# emit_signal("to_inventory", plant.tipus Arguments que diguin el tipus de la planta)
+
 	# gestionar inventari: aquí o en funció dedicada? -> Enviar signal a un altre script. 
 	# Caldrà que manager i inventari siguin germans i hi hagi un pare que els gestioni
 
