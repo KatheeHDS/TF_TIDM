@@ -29,6 +29,13 @@ config/icon="res://icon.png"
 SoundManager="*res://Scenes/SoundManager.tscn"
 CursorManager="*res://Scenes/CursorManager.tscn"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

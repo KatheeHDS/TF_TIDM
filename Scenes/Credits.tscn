@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Fonts/TitanOne-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/GUI/EMERGENT.png" type="Texture" id=2]
+[ext_resource path="res://Assets/GUI/Button_4_Pressed.png" type="Texture" id=3]
+[ext_resource path="res://Assets/GUI/Button_4_Hover.png" type="Texture" id=4]
+[ext_resource path="res://Assets/GUI/Button_4.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 75
@@ -11,35 +14,64 @@ font_data = ExtResource( 1 )
 size = 24
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 1 )
+
 [node name="Credits" type="Node2D"]
+position = Vector2( 478, 235 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 99.0
-margin_top = -52.0
-margin_right = 948.0
-margin_bottom = 690.0
+margin_left = -390.0
+margin_top = -394.0
+margin_right = 846.0
+margin_bottom = 686.0
+rect_scale = Vector2( 1.40579, 1.23231 )
 texture = ExtResource( 2 )
 
 [node name="CreditsHeader" type="Label" parent="TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 0.241
-margin_left = -94.0
-margin_top = 61.0
-margin_right = 123.0
-margin_bottom = 138.36
+margin_left = -98.8771
+margin_top = 136.33
+margin_right = 118.123
+margin_bottom = 213.69
 rect_pivot_offset = Vector2( 255, 98 )
 custom_fonts/font = SubResource( 1 )
 text = "Credits"
 align = 1
 valign = 1
 
+[node name="CreditsBody2" type="Label" parent="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 0.241
+margin_left = 83.2275
+margin_top = 401.686
+margin_right = 300.228
+margin_bottom = 490.406
+rect_pivot_offset = Vector2( 255, 98 )
+custom_fonts/font = SubResource( 2 )
+text = "ART
+Montse Guàrdia
+
+BETA TESTER TEAM
+[Insta] alejumidrawings
+[Insta] cuervosolsticio
+[Github] gbenejam
+[Insta] kyo_and_yui
+[Insta] milkcowshow
+[Github] setzer22
+"
+align = 1
+valign = 1
+
 [node name="CreditsBody" type="Label" parent="TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 0.241
-margin_left = -146.0
-margin_top = 234.0
-margin_right = 71.0
-margin_bottom = 311.36
+margin_left = -340.023
+margin_top = 447.94
+margin_right = -123.023
+margin_bottom = 525.3
 rect_pivot_offset = Vector2( 255, 98 )
 custom_fonts/font = SubResource( 2 )
 text = "BGM
@@ -55,12 +87,35 @@ valign = 1
 [node name="CreditsFooter" type="Label" parent="TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 0.241
-margin_left = -104.0
-margin_top = 428.0
-margin_right = 113.0
-margin_bottom = 505.36
+margin_left = -137.29
+margin_top = 676.779
+margin_right = 79.7102
+margin_bottom = 754.139
 rect_pivot_offset = Vector2( 255, 98 )
 custom_fonts/font = SubResource( 2 )
 text = "Thanks for playing!"
+align = 1
+valign = 1
+
+[node name="BackButton" type="TextureButton" parent="."]
+margin_left = 948.0
+margin_top = 576.0
+margin_right = 1458.0
+margin_bottom = 831.0
+rect_scale = Vector2( 0.623208, 0.594567 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+
+[node name="Back" type="Label" parent="BackButton"]
+anchor_right = 1.0
+anchor_bottom = 0.241
+margin_left = -115.843
+margin_top = 69.8026
+margin_right = 101.157
+margin_bottom = 147.163
+rect_pivot_offset = Vector2( 255, 98 )
+custom_fonts/font = SubResource( 3 )
+text = "Back"
 align = 1
 valign = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/Fonts/TitanOne-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/GUI/EMERGENT.png" type="Texture" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://Assets/GUI/Button_0_Pressed.png" type="Texture" id=10]
 [ext_resource path="res://Assets/GUI/Button_0_Hover.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/Pause.gd" type="Script" id=12]
+[ext_resource path="res://Assets/GUI/Button_4_Pressed.png" type="Texture" id=13]
+[ext_resource path="res://Assets/GUI/Button_4_Hover.png" type="Texture" id=14]
+[ext_resource path="res://Assets/GUI/Button_4.png" type="Texture" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 size = 75
@@ -22,6 +25,10 @@ size = 50
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 50
 font_data = ExtResource( 1 )
 
@@ -121,5 +128,28 @@ margin_bottom = 147.163
 rect_pivot_offset = Vector2( 255, 98 )
 custom_fonts/font = SubResource( 3 )
 text = "EXIT"
+align = 1
+valign = 1
+
+[node name="BackButton" type="TextureButton" parent="."]
+margin_left = 1347.0
+margin_top = 577.0
+margin_right = 1857.0
+margin_bottom = 832.0
+rect_scale = Vector2( 0.623208, 0.594567 )
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 13 )
+texture_hover = ExtResource( 14 )
+
+[node name="Back" type="Label" parent="BackButton"]
+anchor_right = 1.0
+anchor_bottom = 0.241
+margin_left = -115.843
+margin_top = 69.8026
+margin_right = 101.157
+margin_bottom = 147.163
+rect_pivot_offset = Vector2( 255, 98 )
+custom_fonts/font = SubResource( 4 )
+text = "Back"
 align = 1
 valign = 1

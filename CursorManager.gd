@@ -16,6 +16,14 @@ func set_cursor(cursor_name):
 		Input.set_custom_mouse_cursor(water)
 	elif cursor_name == "default":
 		Input.set_custom_mouse_cursor(default)
+	elif cursor_name == "pick":
+			Input.set_custom_mouse_cursor(pick)
+	elif cursor_name == "point":
+		Input.set_custom_mouse_cursor(point)
+	else:
+		assert(false, "invalid cursor")
+
+
 
 func on_hovered():
 	Input.set_custom_mouse_cursor(point)

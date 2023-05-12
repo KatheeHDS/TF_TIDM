@@ -19,8 +19,7 @@ var plant_type # variable que desarà el tipus de planta (greenTree)
 var growth_stage = 1 # TODO DOCUMENTACIO
 
 var hovering = false
-var waterable = true
-var harvestable = false
+
 
 
 
@@ -57,25 +56,21 @@ func get_required_water_amount_for_growth_stage(stage):
 func get_required_sun_amount_for_growth_stage(stage):
 	var sun_amount = 0
 	if stage == 4:
-		harvestable = true
 		return 0
 	else:
 		for _i in range(0, stage):
 			sun_amount += self.max_sun * 0.3333
-			harvestable = false
 		return sun_amount
 
 
 func on_watered():
 	var max_stage_water = get_required_water_amount_for_growth_stage(self.growth_stage)
 	if num_water < max_stage_water:
-		waterable = true
 		num_water += 1
 		print("watered ", num_water)
 		# PLAY SOUND WATER
 		SoundManager.sfx("water")
 	else:
-		waterable = false
 		print("no accepta més aigua")
 		# PLAY SOUND DRY
 		SoundManager.sfx("dry")
@@ -90,9 +85,9 @@ func _process(delta):
 	
 	# Cursor sprites: VISUAL FEEDBACK
 	if hovering:
-		if growth_stage < 4 && waterable:
+		if growth_stage < 4 and num_water < required_stage_water:
 			CursorManager.set_cursor("water")
-		elif harvestable:
+		elif growth_stage == 4:
 			CursorManager.set_cursor("pick")
 		else:
 			CursorManager.set_cursor("default")
@@ -105,6 +100,7 @@ func _process(delta):
 			SoundManager.sfx("grow")
 		else:
 			emit_signal("harvested")
+			CursorManager.set_cursor("default")
 			# PLAY SOUND PICKUP
 			SoundManager.sfx("pickup")
 
