@@ -20,34 +20,36 @@ func _ready():
 
 
 	
-func on_game_start():
+func on_game_start(): #OK
 	SoundManager.sfx("click")
 	emit_signal("start_game")
 
-func exit_game():
+func exit_game(): #OK
 	SoundManager.sfx("click")
 	emit_signal("exit_game")
 
-func open_config():
-	SoundManager.sfx("error")
+func open_config(): #OK
+	SoundManager.sfx("click")
 	emit_signal("config_popup")
 
-func open_credits():
-	SoundManager.sfx("error")
+func open_credits(): #OK
+	SoundManager.sfx("click")
 	emit_signal("credits_popup")
 
-func open_help():
-	SoundManager.sfx("error")
+func open_help(): #OK
+	SoundManager.sfx("click")
 	emit_signal("help_popup")
 
-func open_almanac():
-	SoundManager.sfx("error")
+#TODO
+func open_almanac(): #OK
+	SoundManager.sfx("click")
 	emit_signal("almanac_popup")
 
-func open_roadmap():
-	SoundManager.sfx("error")
+#TODO (ESTEM A TITLE.GD)
+func open_roadmap():#OK
+	SoundManager.sfx("click")
 	emit_signal("roadmap_popup")
 	
-func go_back():
+func go_back():#UNUSED
 	SoundManager.sfx("click")
 	emit_signal("back")

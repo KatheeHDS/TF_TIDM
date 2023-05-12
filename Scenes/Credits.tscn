@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Fonts/TitanOne-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/GUI/EMERGENT.png" type="Texture" id=2]
 [ext_resource path="res://Assets/GUI/Button_4_Pressed.png" type="Texture" id=3]
 [ext_resource path="res://Assets/GUI/Button_4_Hover.png" type="Texture" id=4]
 [ext_resource path="res://Assets/GUI/Button_4.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Credits.gd" type="Script" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 75
@@ -20,6 +21,7 @@ font_data = ExtResource( 1 )
 
 [node name="Credits" type="Node2D"]
 position = Vector2( 478, 235 )
+script = ExtResource( 6 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = -390.0
