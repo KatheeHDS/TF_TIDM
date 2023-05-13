@@ -12,6 +12,7 @@ var HelpScreen = preload("res://Scenes/Help.tscn")
 var CreditsScreen = preload("res://Scenes/Credits.tscn")
 var ConfigScreen = preload("res://Scenes/Options.tscn")
 var GuideScreen = preload("res://Scenes/Almanac.tscn")
+var RoadmapScreen = preload("res://Scenes/Roadmap.tscn")
 var default = load("res://Assets/GUI/Cursor/CURSOR_DEFAULT.png")
 
 func _ready():
@@ -22,9 +23,13 @@ func _ready():
 	Input.set_custom_mouse_cursor(default) # sets custom cursor
 	yield(get_tree().create_timer(2.0), "timeout") #splashscreen timer
 	splash.queue_free()
+	create_main_menu()
+
+func create_main_menu():
 	var title = GameTitle.instance()
 	title.name = "title"
 	add_child(title)
+	print("menu created!")
 	title.connect("start_game", self, "on_game_started")
 	title.connect("exit_game", self, "on_game_exited")
 	title.connect("help_popup", self, "on_help_seeked")
@@ -33,7 +38,6 @@ func _ready():
 	title.connect("config_popup", self, "on_options_opened")
 	title.connect("credits_popup", self, "on_credits_opened")
 	title.connect("roadmap_popup", self, "on_roadmap_opened")
-
 
 func on_game_started():
 	var game = GameScene.instance()
@@ -79,6 +83,9 @@ func on_credits_opened():
 
 func on_roadmap_opened():
 	print("ROADMAP OPENS NOW")
+	var roadmap = RoadmapScreen.instance()
+	roadmap.name = "roadmap"
+	add_child(roadmap)
 	
 func _unhandled_input(event):
 	if event is InputEventKey and event.scancode == KEY_ESCAPE and event.is_pressed():		
@@ -86,8 +93,10 @@ func _unhandled_input(event):
 			var pause = PauseMenu.instance()
 			pause.name = "pause"
 			add_child(pause)
+			pause.connect("help_popup", self, "on_help_seeked")
 			pause.connect("config_popup", self, "on_options_opened")
 			pause.connect("almanac_popup", self, "on_almanac_opened")
+			pause.connect("back_menu", self, "back_to_menu")
 			print("Paused")
 			get_tree().paused = true
 		else:
@@ -96,3 +105,8 @@ func _unhandled_input(event):
 			get_tree().paused = false
 		 
 		pause_opened = not pause_opened
+
+func back_to_menu():
+	get_node("game").queue_free()
+	get_node("pause").queue_free()
+	create_main_menu()
