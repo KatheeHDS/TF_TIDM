@@ -8,7 +8,7 @@ func _ready():
 	pass # Replace with function body.
 
 #randomize y height?
-func _process(delta):
+func _process(_delta):
 	self.position.x += speed
 	if self.position.x > get_viewport().size.x+250:
 		self.position.x = -250
