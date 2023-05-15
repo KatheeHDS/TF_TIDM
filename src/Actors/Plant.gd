@@ -7,12 +7,15 @@ var num_water = 0 #variable local
 var sprites = []
 onready var Plant_sprite = $PlantSprite #get_node("PlantSprite")
 onready var Collision_shape = $CollisionShape2D 
-const SCALING = 0.688
+const SCALING_MIN = 0.688
+const SCALING_MAX = 1.5
+const SKY = 422
 
 var name_plant
 var max_water # nombre de clicks
 var max_sun # temps mínim de creixement de la planta
 var collision_sizes
+var scaling
 
 var sunlight = 0 # delta de temps transcorregut (quantitat de sol rebut per la planta)
 var plant_type # variable que desarà el tipus de planta (greenTree)
@@ -40,11 +43,18 @@ func initialize(plant_data, plant_id):
 	self.plant_type = plant_data["color"] + plant_data["type"]
 	self.num_crop = plant_id #Es una script variable que cal exportar!
 	self.collision_sizes = plant_data["collision_sizes"]
+	self.z_index = self.position.y
+	perspective()	
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_1.png"))
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_2.png"))
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_3.png"))
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_4.png"))
 	set_sprite(sprites[0], collision_sizes[0])
+
+func perspective():
+	var y_global = self.position.y #422
+	var factor = (y_global - SKY) / (get_viewport().size.y - SKY)
+	scaling = lerp(SCALING_MIN, SCALING_MAX, factor)
 	
 	
 func get_required_water_amount_for_growth_stage(stage):
@@ -114,12 +124,12 @@ func set_sprite(texture, collision_size):
 	Plant_sprite.centered = true
 	Plant_sprite.offset.x = 0
 	Plant_sprite.offset.y = -texture.get_height() / 2
-	Plant_sprite.scale = Vector2(SCALING, SCALING)
+	Plant_sprite.scale = Vector2(scaling, scaling)
 	
 	Collision_shape.shape = Collision_shape.shape.duplicate()
-	Collision_shape.shape.extents = collision_size * 0.5 * SCALING
+	Collision_shape.shape.extents = collision_size * 0.5 * scaling
 	Collision_shape.position.x = 0
-	Collision_shape.position.y = -collision_size.y * 0.5 * SCALING
+	Collision_shape.position.y = -collision_size.y * 0.5 * scaling
 	
 func on_mouse_enter():
 	hovering = true
