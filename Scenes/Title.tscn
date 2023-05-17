@@ -27,10 +27,7 @@
 [ext_resource path="res://Assets/GUI/Button_4_Pressed.png" type="Texture" id=25]
 [ext_resource path="res://Assets/GUI/Button_4_Hover.png" type="Texture" id=26]
 [ext_resource path="res://Assets/GUI/Button_4.png" type="Texture" id=27]
-
-[sub_resource type="DynamicFont" id=2]
-size = 75
-font_data = ExtResource( 3 )
+[ext_resource path="res://Assets/GUI/Title V2.png" type="Texture" id=28]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -47,25 +44,15 @@ script = ExtResource( 2 )
 position = Vector2( 969, 545 )
 texture = ExtResource( 19 )
 
-[node name="TitleHeader" type="Label" parent="TitleScreen"]
-anchor_right = 1.0
-anchor_bottom = 0.241
-margin_left = -1659.0
-margin_top = -265.0
-margin_right = -989.0
-margin_bottom = -178.0
-rect_scale = Vector2( 1.276, 1.40687 )
-rect_pivot_offset = Vector2( 255, 98 )
-custom_fonts/font = SubResource( 2 )
-text = "The Forest Rises"
-align = 1
-valign = 1
+[node name="TitleV2" type="Sprite" parent="TitleScreen"]
+position = Vector2( -67, -132 )
+texture = ExtResource( 28 )
 
 [node name="StartButton" type="TextureButton" parent="."]
-margin_left = 425.0
-margin_top = 603.0
-margin_right = 935.0
-margin_bottom = 858.0
+margin_left = 415.0
+margin_top = 546.0
+margin_right = 925.0
+margin_bottom = 801.0
 rect_scale = Vector2( 0.605911, 0.581118 )
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
@@ -85,10 +72,10 @@ align = 1
 valign = 1
 
 [node name="ExitButton" type="TextureButton" parent="."]
-margin_left = 1254.0
-margin_top = 821.0
-margin_right = 1764.0
-margin_bottom = 1076.0
+margin_left = 1192.0
+margin_top = 800.0
+margin_right = 1702.0
+margin_bottom = 1055.0
 rect_scale = Vector2( 0.627708, 0.607651 )
 texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 11 )
@@ -108,10 +95,10 @@ align = 1
 valign = 1
 
 [node name="HelpButton" type="TextureButton" parent="."]
-margin_left = 795.0
-margin_top = 720.0
-margin_right = 1305.0
-margin_bottom = 975.0
+margin_left = 1068.0
+margin_top = 565.0
+margin_right = 1578.0
+margin_bottom = 820.0
 rect_scale = Vector2( 0.623208, 0.594567 )
 texture_normal = ExtResource( 13 )
 texture_pressed = ExtResource( 1 )
@@ -178,10 +165,10 @@ align = 1
 valign = 1
 
 [node name="ConfigButton" type="TextureButton" parent="."]
-margin_left = 1129.0
-margin_top = 572.0
-margin_right = 1639.0
-margin_bottom = 827.0
+margin_left = 739.0
+margin_top = 724.0
+margin_right = 1249.0
+margin_bottom = 979.0
 rect_scale = Vector2( 0.623208, 0.594567 )
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 10 )
