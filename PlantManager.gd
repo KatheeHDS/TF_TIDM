@@ -24,9 +24,8 @@ func _ready():
 	var reader = data_reader.new()
 	unlocks = reader.read_unlocks_data() #initialize unlocks table with data from csv .data
 	Ecosystem = reader.read_ecosystem_data()
+	biome = calculate_biome()
 	create_plant()
-	biome = {}
-	
 	
 func _process(delta):
 	time_to_next_plant -= delta # TODO comptar temps
@@ -39,43 +38,54 @@ func _process(delta):
 func create_plant():
 	var nova_planta = Planta.instance() # Afegeix una nova planta a la llista de plantes existents
 	# TODO CANVIAR ECOSYSTEM A BIOME
-	var selected_plant = randi() % Ecosystem.size() #tria un numero random del 0 al (total de plantes existents)
+	var selected_plant = randi() % biome.size() #tria un numero random del 0 al (total de plantes existents)
 	nova_planta.set_position(Vector2(rand_range(90,1835), rand_range(422, 1080))) #TODO SPAWN AREA SIZE
 	nova_planta.scale = Vector2(0.5, 0.5)
 	habitat[next_id] = nova_planta #afegim la nova planta a la llista de plants
 	add_child(nova_planta)
 	#TODO CANVIAR ECOSYSTEM A BIOME
-	nova_planta.initialize(Ecosystem.values()[selected_plant], next_id)
+	nova_planta.initialize(Ecosystem[biome[selected_plant]], next_id)
 	nova_planta.connect("harvested", self, "on_plant_harvested", [next_id])
 	next_id += 1
 	time_to_next_plant = DELAY
+
+
+func plant_name_to_plant_code(plant_name):
+	var plant_info = Ecosystem[plant_name]
+	return plant_info.color + plant_info.type
 	
 func calculate_biome():
-	if 1 : # utilitzant unlocks i statistics calcular quines plantes compleixen els requisits
-		#TODO: crear BUCLE que recorri tots els requisits de la taula unlocks 
-		# per recorrer un diccionari fer un bucle que iteri sobre les keys (funció godot -> mètode diccionari.keys)
-		# per accedir a les values fem servir claudators diccionari[key]
-		# el value serà una llista de reqs. Comprovar si cada element es compleix.
-		#if tots requisits then append la clau nom_planta a la llista biome (biome.append)
-		
-		#TODO: funcio creixement
-		# implementar una funcio que donada una planta i un estadi de creixement calculi 
-		# quants clicks ha de rebre la planta i quants segons de sol ha de rebre en aquell estadi
-		# valor de sol total * fracció corresponent i arrodonir cap amunt.
-		
-		print("placeholder")
+	var new_biome = []
+
+	for plant_name in Ecosystem.keys():
+		var plant_code = plant_name_to_plant_code(plant_name)
+		var are_requirements_fulfilled = true # ho posem a false si falla algun
+		var requirements = unlocks[plant_code]
+		for requirement in requirements:
+			if statistics.get(requirement.prereq_plant, 0) < requirement.prereq_amt:
+				are_requirements_fulfilled = false
+
+		if are_requirements_fulfilled:
+			new_biome.append(plant_name)
+
+	print("NEW BIOME ", new_biome)
+	print("STATISTICS ", statistics)
+	return new_biome
 
 func increase_stats(plant_type):
 	if statistics.has(plant_type):
 		statistics[plant_type] += 1
-		
 	else :
 		statistics[plant_type] = 1
 	print("Number of species " + str(statistics))
 	
 func on_plant_harvested(id):
 	var plant = habitat[id]
+
+	# Increase the stats and compute the new biome with the list of unlocked plants
 	increase_stats(plant.plant_type)
+	biome = calculate_biome()
+
 	print("PLANTA COLLIDA")
 	plant.queue_free() # elimina la planta de pantalla
 	habitat.erase(id) # elimina la planta del diccionari
