@@ -1,7 +1,27 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://CursorManager.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Materials/Waterflow.gdshader" type="Shader" id=2]
+[ext_resource path="res://Assets/GUI/Pause_hint.png" type="Texture" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/scale = null
+shader_param/zoom = null
+shader_param/gap_stretch = Vector2( 0.8, 0.05 )
+shader_param/refraction_stretch = Vector2( 2, 0.8 )
+shader_param/refraction_strength = 0.02
+shader_param/water_tint = Color( 0.2, 0.6, 1, 0.1 )
+shader_param/water_highlight = Color( 1, 1, 1, 0.3 )
+shader_param/speed = 1.0
+shader_param/flow_gaps = 0.33
+shader_param/highlight_width = 0.02
 
 [node name="CursorManager" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 1 )
+
+[node name="PauseHint" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 184, 216 )
+texture = ExtResource( 3 )

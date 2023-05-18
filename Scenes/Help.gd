@@ -2,6 +2,7 @@ extends Node2D
 signal back
 
 func _ready():
+	self.z_index = 2000
 	assert(get_node("BackButton").connect("pressed", self, "go_back") == OK)
 	
 func go_back():

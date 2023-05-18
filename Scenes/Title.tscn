@@ -1,41 +1,21 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/GUI/Button_1_Pressed.png" type="Texture" id=1]
 [ext_resource path="res://src/Title.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Fonts/TitanOne-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scenes/Materials/Montserrat_Bold.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Assets/GUI/Button_2.png" type="Texture" id=4]
 [ext_resource path="res://Assets/GUI/Button_2_Pressed.png" type="Texture" id=5]
 [ext_resource path="res://Assets/GUI/Button_0.png" type="Texture" id=6]
-[ext_resource path="res://Assets/GUI/Button_3.png" type="Texture" id=7]
 [ext_resource path="res://Assets/GUI/Button_2_Hover.png" type="Texture" id=8]
-[ext_resource path="res://Assets/GUI/Button_3_Hover.png" type="Texture" id=9]
-[ext_resource path="res://Assets/GUI/Button_3_Pressed.png" type="Texture" id=10]
 [ext_resource path="res://Assets/GUI/Button_0_Pressed.png" type="Texture" id=11]
 [ext_resource path="res://Assets/GUI/Button_0_Hover.png" type="Texture" id=12]
 [ext_resource path="res://Assets/GUI/Button_1.png" type="Texture" id=13]
 [ext_resource path="res://Assets/GUI/Button_1_Hover.png" type="Texture" id=14]
-[ext_resource path="res://Assets/GUI/Button_6.png" type="Texture" id=15]
-[ext_resource path="res://Assets/GUI/Button_5.png" type="Texture" id=16]
-[ext_resource path="res://Assets/GUI/Button_7_Hover.png" type="Texture" id=17]
-[ext_resource path="res://Assets/GUI/Button_6_Pressed.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Backgrounds/TitleScreen.png" type="Texture" id=19]
-[ext_resource path="res://Assets/GUI/Button_7.png" type="Texture" id=20]
-[ext_resource path="res://Assets/GUI/Button_7_Pressed.png" type="Texture" id=21]
-[ext_resource path="res://Assets/GUI/Button_5_Hover.png" type="Texture" id=22]
-[ext_resource path="res://Assets/GUI/Button_6_Hover.png" type="Texture" id=23]
-[ext_resource path="res://Assets/GUI/Button_5_Pressed.png" type="Texture" id=24]
 [ext_resource path="res://Assets/GUI/Button_4_Pressed.png" type="Texture" id=25]
 [ext_resource path="res://Assets/GUI/Button_4_Hover.png" type="Texture" id=26]
 [ext_resource path="res://Assets/GUI/Button_4.png" type="Texture" id=27]
 [ext_resource path="res://Assets/GUI/Title V2.png" type="Texture" id=28]
-
-[sub_resource type="DynamicFont" id=1]
-size = 50
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 50
-font_data = ExtResource( 3 )
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource( 2 )
@@ -61,12 +41,13 @@ texture_hover = ExtResource( 8 )
 [node name="Start" type="Label" parent="StartButton"]
 anchor_right = 1.0
 anchor_bottom = 0.241
-margin_left = -115.843
-margin_top = 69.8026
-margin_right = 101.157
-margin_bottom = 147.163
+margin_left = -115.522
+margin_top = 70.5537
+margin_right = 101.478
+margin_bottom = 147.914
 rect_pivot_offset = Vector2( 255, 98 )
-custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+custom_fonts/font = ExtResource( 3 )
 text = "START"
 align = 1
 valign = 1
@@ -84,12 +65,13 @@ texture_hover = ExtResource( 12 )
 [node name="Exit" type="Label" parent="ExitButton"]
 anchor_right = 1.0
 anchor_bottom = 0.241
-margin_left = -115.843
-margin_top = 69.8026
-margin_right = 101.157
-margin_bottom = 147.163
+margin_left = -115.533
+margin_top = 70.5209
+margin_right = 101.467
+margin_bottom = 147.881
 rect_pivot_offset = Vector2( 255, 98 )
-custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+custom_fonts/font = ExtResource( 3 )
 text = "EXIT"
 align = 1
 valign = 1
@@ -107,13 +89,14 @@ texture_hover = ExtResource( 14 )
 [node name="Help" type="Label" parent="HelpButton"]
 anchor_right = 1.0
 anchor_bottom = 0.241
-margin_left = -115.843
-margin_top = 69.8026
-margin_right = 101.157
-margin_bottom = 147.163
+margin_left = -115.531
+margin_top = 70.5367
+margin_right = 101.469
+margin_bottom = 147.897
 rect_pivot_offset = Vector2( 255, 98 )
-custom_fonts/font = SubResource( 1 )
-text = "HOW TO PLAY"
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Help"
 align = 1
 valign = 1
 
@@ -123,20 +106,21 @@ margin_top = 823.0
 margin_right = 825.0
 margin_bottom = 1078.0
 rect_scale = Vector2( 0.623208, 0.594567 )
-texture_normal = ExtResource( 15 )
-texture_pressed = ExtResource( 18 )
-texture_hover = ExtResource( 23 )
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 14 )
 
 [node name="Credits" type="Label" parent="CreditsButton"]
 anchor_right = 1.0
 anchor_bottom = 0.241
-margin_left = -115.843
-margin_top = 69.8026
-margin_right = 101.157
-margin_bottom = 147.163
+margin_left = -115.531
+margin_top = 70.5367
+margin_right = 101.469
+margin_bottom = 147.897
 rect_pivot_offset = Vector2( 255, 98 )
-custom_fonts/font = SubResource( 1 )
-text = "CREDITS"
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Credits"
 align = 1
 valign = 1
 
@@ -146,21 +130,21 @@ margin_top = 665.0
 margin_right = 2037.0
 margin_bottom = 920.0
 rect_scale = Vector2( 0.623208, 0.594567 )
-texture_normal = ExtResource( 20 )
-texture_pressed = ExtResource( 21 )
-texture_hover = ExtResource( 17 )
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 14 )
 
 [node name="Almanac" type="Label" parent="AlmanacButton"]
 anchor_right = 1.0
 anchor_bottom = 0.241
-margin_left = -115.843
-margin_top = 69.8026
-margin_right = 101.157
-margin_bottom = 147.163
+margin_left = -115.531
+margin_top = 70.5367
+margin_right = 101.469
+margin_bottom = 147.897
 rect_pivot_offset = Vector2( 255, 98 )
-custom_colors/font_color = Color( 0.321569, 0.490196, 0.52549, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "GUIDE"
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Almanac"
 align = 1
 valign = 1
 
@@ -170,20 +154,21 @@ margin_top = 724.0
 margin_right = 1249.0
 margin_bottom = 979.0
 rect_scale = Vector2( 0.623208, 0.594567 )
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 10 )
-texture_hover = ExtResource( 9 )
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 14 )
 
 [node name="Config" type="Label" parent="ConfigButton"]
 anchor_right = 1.0
 anchor_bottom = 0.241
-margin_left = -115.843
-margin_top = 69.8026
-margin_right = 101.157
-margin_bottom = 147.163
+margin_left = -115.531
+margin_top = 70.5367
+margin_right = 101.469
+margin_bottom = 147.897
 rect_pivot_offset = Vector2( 255, 98 )
-custom_fonts/font = SubResource( 1 )
-text = "SETTINGS"
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Settings"
 align = 1
 valign = 1
 
@@ -193,20 +178,21 @@ margin_top = 677.0
 margin_right = 572.0
 margin_bottom = 932.0
 rect_scale = Vector2( 0.623208, 0.594567 )
-texture_normal = ExtResource( 16 )
-texture_pressed = ExtResource( 24 )
-texture_hover = ExtResource( 22 )
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 14 )
 
 [node name="Future" type="Label" parent="FutureButton"]
 anchor_right = 1.0
 anchor_bottom = 0.241
-margin_left = -115.843
-margin_top = 69.8026
-margin_right = 101.157
-margin_bottom = 147.163
+margin_left = -115.531
+margin_top = 70.5367
+margin_right = 101.469
+margin_bottom = 147.897
 rect_pivot_offset = Vector2( 255, 98 )
-custom_fonts/font = SubResource( 1 )
-text = "WHAT'S NEXT"
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Roadmap"
 align = 1
 valign = 1
 
@@ -229,7 +215,8 @@ margin_top = 69.8026
 margin_right = 101.157
 margin_bottom = 147.163
 rect_pivot_offset = Vector2( 255, 98 )
-custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+custom_fonts/font = ExtResource( 3 )
 text = "Back"
 align = 1
 valign = 1

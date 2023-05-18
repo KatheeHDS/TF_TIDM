@@ -49,7 +49,6 @@ func on_game_exited():
 	print("CLOSING GAME")
 	on_credits_opened()
 	yield(get_tree().create_timer(5.0), "timeout")
-	# credits.queue_free()
 	get_tree().quit()
 
 func on_help_seeked():

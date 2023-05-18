@@ -11,6 +11,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.z_index = 2000
 	assert(get_node("BackButton").connect("pressed", self, "go_back") == OK)
 
 func go_back():

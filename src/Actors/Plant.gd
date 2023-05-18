@@ -78,6 +78,7 @@ func on_watered():
 	if num_water < max_stage_water:
 		num_water += 1
 		print("watered ", num_water)
+		# here insert animation shader water particles
 		# PLAY SOUND WATER
 		SoundManager.sfx("water")
 	else:

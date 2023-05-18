@@ -10,6 +10,7 @@ func _ready():
 	assert(get_node("OptionsButton").connect("pressed", self, "on_options_clicked") == OK)
 	assert(get_node("AlmanacButton").connect("pressed", self, "open_almanac") == OK)
 	assert(get_node("MenuButton").connect("pressed", self, "to_main_menu") == OK)
+	self.z_index = 1995
 	
 func on_help_clicked():
 	SoundManager.sfx("click")
