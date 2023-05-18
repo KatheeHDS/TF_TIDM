@@ -20,7 +20,7 @@ shader_type canvas_item;
 render_mode blend_mix;
 
 // Wind settings.
-uniform float speed = 1.0;
+uniform float speed = 1;
 uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
 uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
 uniform float strengthScale = 100.0;
@@ -52,7 +52,7 @@ void vertex() {
 shader = SubResource( 1 )
 shader_param/speed = 1.0
 shader_param/minStrength = 0.034
-shader_param/maxStrength = 0.515
+shader_param/maxStrength = 0.301
 shader_param/strengthScale = 100.0
 shader_param/interval = 3.5
 shader_param/detail = 1.0
