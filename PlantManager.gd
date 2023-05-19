@@ -81,6 +81,7 @@ func increase_stats(plant_type):
 	
 func on_plant_harvested(id):
 	var plant = habitat[id]
+	#HERE: Play ani of fruit going UP
 
 	# Increase the stats and compute the new biome with the list of unlocked plants
 	increase_stats(plant.plant_type)

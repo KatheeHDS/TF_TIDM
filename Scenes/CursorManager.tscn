@@ -1,27 +1,49 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://CursorManager.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Materials/Waterflow.gdshader" type="Shader" id=2]
-[ext_resource path="res://Assets/GUI/Pause_hint.png" type="Texture" id=3]
+[ext_resource path="res://Assets/GUI/Cursor/Drop.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/WaterParticles.gd" type="Script" id=3]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 2 )
-shader_param/scale = null
-shader_param/zoom = null
-shader_param/gap_stretch = Vector2( 0.8, 0.05 )
-shader_param/refraction_stretch = Vector2( 2, 0.8 )
-shader_param/refraction_strength = 0.02
-shader_param/water_tint = Color( 0.2, 0.6, 1, 0.1 )
-shader_param/water_highlight = Color( 1, 1, 1, 0.3 )
-shader_param/speed = 1.0
-shader_param/flow_gaps = 0.33
-shader_param/highlight_width = 0.02
+[sub_resource type="Gradient" id=5]
+interpolation_mode = 2
+offsets = PoolRealArray( 0, 0.507246, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+lifetime_randomness = 0.31
+emission_shape = 1
+emission_sphere_radius = 17.69
+flag_disable_z = true
+direction = Vector3( 0, 50, 0 )
+spread = 180.0
+flatness = 1.0
+gravity = Vector3( 0, 200, 0 )
+initial_velocity = 0.14
+initial_velocity_random = 0.39
+angular_velocity = -720.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 100.0
+radial_accel_random = 1.0
+tangential_accel = 56.52
+tangential_accel_random = 0.71
+angle = 134.5
+angle_random = 1.0
+color_ramp = SubResource( 4 )
 
 [node name="CursorManager" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 1 )
 
-[node name="PauseHint" type="Sprite" parent="."]
-material = SubResource( 1 )
-position = Vector2( 184, 216 )
-texture = ExtResource( 3 )
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 33, 11 )
+amount = 11
+explosiveness = 0.32
+randomness = 0.3
+process_material = SubResource( 6 )
+texture = ExtResource( 2 )
+script = ExtResource( 3 )
