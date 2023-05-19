@@ -1,9 +1,9 @@
 extends TextureButton
 
 func _ready():
-	self.z_index = 2000
-	assert(get_node("PauseButton").connect("pressed", self, "open_pause_menu") == OK)
-
+	#self.z_index = 2000
+	#assert(get_node("PauseButton").connect("pressed", self, "open_pause_menu") == OK)
+	pass
 func open_pause_menu():
 	print("pause opened?")
 	# A) send signal to game manager to open pause menu?
