@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SPRITE_Fig.png-a385a501db263d9bec62bf593dc02abf.stex"
+path="res://.import/SPRITE_Figtree.png-2c7662161f3224afd2a040ff0fe0d891.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Plants/SPRITE_Fig.png"
-dest_files=[ "res://.import/SPRITE_Fig.png-a385a501db263d9bec62bf593dc02abf.stex" ]
+source_file="res://Assets/Plants/SPRITE_Figtree.png"
+dest_files=[ "res://.import/SPRITE_Figtree.png-2c7662161f3224afd2a040ff0fe0d891.stex" ]
 
 [params]
 

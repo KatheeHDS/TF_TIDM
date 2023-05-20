@@ -28,6 +28,7 @@ config/icon="res://icon.png"
 
 SoundManager="*res://Scenes/SoundManager.tscn"
 CursorManager="*res://Scenes/CursorManager.tscn"
+CollisionManager="*res://Scenes/CollisionManager.gd"
 
 [display]
 

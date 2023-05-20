@@ -20,10 +20,13 @@ var Ecosystem
 const DELAY = 5
 var time_to_next_plant = DELAY
 
+onready var inventory_hud = get_parent().get_node("InventoryHUD")
+
 func _ready(): 
 	var reader = data_reader.new()
 	unlocks = reader.read_unlocks_data() #initialize unlocks table with data from csv .data
 	Ecosystem = reader.read_ecosystem_data()
+	inventory_hud.initialize(Ecosystem)
 	biome = calculate_biome()
 	create_plant()
 	
@@ -39,7 +42,7 @@ func create_plant():
 	var nova_planta = Planta.instance() # Afegeix una nova planta a la llista de plantes existents
 	# TODO CANVIAR ECOSYSTEM A BIOME
 	var selected_plant = randi() % biome.size() #tria un numero random del 0 al (total de plantes existents)
-	nova_planta.set_position(Vector2(rand_range(90,1835), rand_range(422, 1080))) #TODO SPAWN AREA SIZE
+	nova_planta.set_position(Vector2(rand_range(90,1835), rand_range(422, 1080 - 170))) #TODO SPAWN AREA SIZE
 	nova_planta.scale = Vector2(0.5, 0.5)
 	habitat[next_id] = nova_planta #afegim la nova planta a la llista de plants
 	add_child(nova_planta)
@@ -72,11 +75,12 @@ func calculate_biome():
 	print("STATISTICS ", statistics)
 	return new_biome
 
-func increase_stats(plant_type):
+func increase_stats(plant_name, plant_type):
 	if statistics.has(plant_type):
 		statistics[plant_type] += 1
 	else :
 		statistics[plant_type] = 1
+	inventory_hud.set_count(plant_name, statistics[plant_type])
 	print("Number of species " + str(statistics))
 	
 func on_plant_harvested(id):
@@ -84,7 +88,7 @@ func on_plant_harvested(id):
 	#HERE: Play ani of fruit going UP
 
 	# Increase the stats and compute the new biome with the list of unlocked plants
-	increase_stats(plant.plant_type)
+	increase_stats(plant.name_plant, plant.plant_type)
 	biome = calculate_biome()
 
 	print("PLANTA COLLIDA")
