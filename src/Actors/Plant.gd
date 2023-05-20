@@ -23,12 +23,12 @@ var growth_stage = 1 # TODO DOCUMENTACIO
 
 var hovering = false
 
+var is_harvested = false
 
 
 
 func _ready():
-	assert(connect("clicked", self, "on_watered") == OK) #connects signal clicked to on_watered function in this script (self)
-	assert(connect("mouse_entered", self, "on_mouse_enter") == OK)
+	assert(connect("mouse_entered", self, "on_mouse_enter") == OK) #connects signal mouse_entered to on_mouse_enter function in this script (self)
 	assert(connect("mouse_exited", self, "on_mouse_exit") == OK)
 	
 	#PLAY SOUND SPROUT
@@ -43,7 +43,7 @@ func initialize(plant_data, plant_id):
 	self.plant_type = plant_data["color"] + plant_data["type"]
 	self.num_crop = plant_id #Es una script variable que cal exportar!
 	self.collision_sizes = plant_data["collision_sizes"]
-	self.z_index = self.position.y
+	self.z_index = int(self.position.y)
 	perspective()	
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_1.png"))
 	sprites.append(load("res://Assets/Plants/" + name_plant + "_2.png"))
@@ -76,6 +76,7 @@ func get_required_sun_amount_for_growth_stage(stage):
 func on_watered():
 	var max_stage_water = get_required_water_amount_for_growth_stage(self.growth_stage)
 	if num_water < max_stage_water:
+		$WaterParticles.emitting = true
 		num_water += 1
 		print("watered ", num_water)
 		# here insert animation shader water particles
@@ -89,6 +90,9 @@ func on_watered():
 		
 		
 func _process(delta):
+	if is_harvested:
+		return
+
 	sunlight += delta # TODO comptar temps
 	var required_stage_sun = get_required_sun_amount_for_growth_stage(self.growth_stage)
 	var required_stage_water = get_required_water_amount_for_growth_stage(self.growth_stage)
@@ -110,13 +114,61 @@ func _process(delta):
 			# PLAY SOUND GROW
 			SoundManager.sfx("grow")
 		else:
-			emit_signal("harvested")
+			harvest()
 			CursorManager.set_cursor("default")
 			# PLAY SOUND PICKUP
 			SoundManager.sfx("pickup")
 
+func harvest():
+	is_harvested = true
+	$CollisionShape2D.disabled = true # prevents spam clicks from affecting this plant
+
+	var animation_duration = 0.5
+	var animation_transition = Tween.TRANS_CUBIC
+	var animation_easing = Tween.EASE_OUT
+
+	$Tween.interpolate_property(
+		self, 
+		"position", 
+		self.position, # valor inicial
+		self.position - Vector2(0, -100), # valor final
+		animation_duration,
+		animation_transition,
+		animation_easing
+	)
+	$Tween.interpolate_property(
+		self, 
+		"modulate",
+		self.modulate,
+		Color(1, 1, 1, 0),
+		animation_duration,
+		animation_transition,
+		animation_easing
+	)
+	$Tween.interpolate_property(
+		self,
+		"scale",
+		self.scale,
+		self.scale * 0.5,
+		animation_duration,
+		animation_transition,
+		animation_easing
+	)
+	$Tween.start()
+	
+	yield(get_tree().create_timer(animation_duration - 0.2), "timeout") # wait for animation to end
+	emit_signal("harvested")
+	yield(get_tree().create_timer(0.2), "timeout")
+	queue_free()
+
+
 func increase_growth_stage():
 	self.growth_stage += 1
+	set_sprite(sprites[self.growth_stage - 1], collision_sizes[self.growth_stage - 1])
+	num_water = 0
+
+func decrease_growth_stage():
+	self.growth_stage -= 1
 	set_sprite(sprites[self.growth_stage - 1], collision_sizes[self.growth_stage - 1])
 	num_water = 0
 
@@ -131,6 +183,8 @@ func set_sprite(texture, collision_size):
 	Collision_shape.shape.extents = collision_size * 0.5 * scaling
 	Collision_shape.position.x = 0
 	Collision_shape.position.y = -collision_size.y * 0.5 * scaling
+
+	$WaterParticles.position.y = -collision_size.y
 	
 func on_mouse_enter():
 	hovering = true

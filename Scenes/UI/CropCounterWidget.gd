@@ -14,7 +14,7 @@ func set_count(new_count):
 
 func update_ui():
 	if self.count == 0:
-		$Label.text = ""
+		$Label.text = "-"
 		$TextureRect.texture = load("res://Assets/Plants/SPRITE_SECRET.png")
 	else:
 		$Label.text = str(self.count)

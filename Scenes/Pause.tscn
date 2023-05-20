@@ -27,10 +27,10 @@ stretch_mode = 5
 [node name="PauseBody" type="Label" parent="TextureRect2"]
 anchor_right = 1.0
 anchor_bottom = 0.241
-margin_left = -243.23
-margin_top = -68.2294
-margin_right = 1744.77
-margin_bottom = 95.5156
+margin_left = -242.076
+margin_top = -74.7416
+margin_right = 1745.92
+margin_bottom = 89.0034
 rect_scale = Vector2( 0.0145232, 0.0153575 )
 rect_pivot_offset = Vector2( 255, 98 )
 custom_colors/font_color = Color( 0.54902, 0.443137, 0.686275, 1 )
@@ -51,14 +51,14 @@ rect_scale = Vector2( 0.0461142, 0.0461142 )
 rect_pivot_offset = Vector2( 255, 98 )
 custom_colors/font_color = Color( 0.54902, 0.443137, 0.686275, 1 )
 custom_fonts/font = ExtResource( 3 )
-text = "PAUSE"
+text = "PAUSED"
 align = 1
 valign = 1
 
 [node name="HelpButton" type="TextureButton" parent="."]
-margin_left = 1111.0
+margin_left = 536.0
 margin_top = 396.0
-margin_right = 1621.0
+margin_right = 1047.0
 margin_bottom = 651.0
 rect_scale = Vector2( 0.650438, 0.55457 )
 texture_normal = ExtResource( 5 )
@@ -79,9 +79,9 @@ align = 1
 valign = 1
 
 [node name="OptionsButton" type="TextureButton" parent="."]
-margin_left = 536.0
+margin_left = 1128.0
 margin_top = 396.0
-margin_right = 1046.0
+margin_right = 1639.0
 margin_bottom = 651.0
 rect_scale = Vector2( 0.65303, 0.55678 )
 texture_normal = ExtResource( 5 )
@@ -102,10 +102,9 @@ align = 1
 valign = 1
 
 [node name="MenuButton" type="TextureButton" parent="."]
-margin_left = 1428.0
-margin_top = 798.0
-margin_right = 1938.0
-margin_bottom = 1053.0
+margin_left = 1604.0
+margin_right = 2115.0
+margin_bottom = 255.0
 rect_scale = Vector2( 0.623208, 0.594567 )
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 11 )
@@ -120,15 +119,15 @@ margin_right = 101.157
 margin_bottom = 147.163
 rect_pivot_offset = Vector2( 255, 98 )
 custom_fonts/font = ExtResource( 3 )
-text = "MENU"
+text = "QUIT"
 align = 1
 valign = 1
 
 [node name="AlmanacButton" type="TextureButton" parent="."]
-margin_left = 821.0
-margin_top = 538.0
-margin_right = 1331.0
-margin_bottom = 793.0
+margin_left = 810.0
+margin_top = 701.0
+margin_right = 1321.0
+margin_bottom = 956.0
 rect_scale = Vector2( 0.623208, 0.594567 )
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )

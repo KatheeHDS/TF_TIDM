@@ -20,36 +20,75 @@ var Ecosystem
 const DELAY = 5
 var time_to_next_plant = DELAY
 
+var seed_in_hand = null
+
 onready var inventory_hud = get_parent().get_node("InventoryHUD")
+var collision_manager
+
+var play_area = Rect2(Vector2(90, 422), Vector2(1745, 488))
 
 func _ready(): 
+	collision_manager = preload("res://Scenes/CollisionManager.tscn").instance()
+	add_child(collision_manager)
+
 	var reader = data_reader.new()
 	unlocks = reader.read_unlocks_data() #initialize unlocks table with data from csv .data
 	Ecosystem = reader.read_ecosystem_data()
 	inventory_hud.initialize(Ecosystem)
 	biome = calculate_biome()
-	create_plant()
+	spawn_plant()
 	
 func _process(delta):
 	time_to_next_plant -= delta # TODO comptar temps
 	if time_to_next_plant <= 0 :
-		create_plant()
+		spawn_plant()
 	# print("temps passat ", time_to_next_plant)
 	if Input.is_action_just_pressed("debug_plant"):
-		create_plant()
-	
-func create_plant():
+		spawn_plant()
+	if Input.is_action_just_pressed("debug_victory"):
+		#LAST THING FOR PAC3: show popup victory ta-da when u press la ç debug
+		print("Nature is healing HA!")
+	if Input.is_action_just_pressed("main_click"):
+		var plant_under_cursor = collision_manager.get_plant_under_cursor()
+		var mouse_position = get_viewport().get_mouse_position()
+
+		if seed_in_hand:
+			if play_area.has_point(mouse_position) && plant_under_cursor == null:
+				create_plant(seed_in_hand, mouse_position)
+				seed_in_hand = null
+				CursorManager.clear_cursor_override()
+			else:
+				SoundManager.sfx("error")
+
+		else:
+			if plant_under_cursor != null:
+				plant_under_cursor.on_watered()
+	if Input.is_action_just_pressed("secondary_click"):
+		var plant_under_cursor = collision_manager.get_plant_under_cursor()
+		if not seed_in_hand && plant_under_cursor != null && plant_under_cursor.growth_stage == 4:
+			seed_in_hand = plant_under_cursor.name_plant
+			plant_under_cursor.decrease_growth_stage()
+			CursorManager.set_cursor_override("seeds")
+
+func spawn_plant():
+	var random_position = Vector2(rand_range(90,1835), rand_range(422, 1080 - 170)) #TODO SPAWN AREA SIZE
+	var selected_plant = randi() % biome.size() #tria un numero random del 0 al (total de plantes existents)
+	var selected_plant_name = biome[selected_plant]
+	create_plant(selected_plant_name, random_position)
+
+func create_plant(plant_to_spawn, position):
 	var nova_planta = Planta.instance() # Afegeix una nova planta a la llista de plantes existents
 	# TODO CANVIAR ECOSYSTEM A BIOME
-	var selected_plant = randi() % biome.size() #tria un numero random del 0 al (total de plantes existents)
-	nova_planta.set_position(Vector2(rand_range(90,1835), rand_range(422, 1080 - 170))) #TODO SPAWN AREA SIZE
+	nova_planta.set_position(position) #TODO SPAWN AREA SIZE
 	nova_planta.scale = Vector2(0.5, 0.5)
 	habitat[next_id] = nova_planta #afegim la nova planta a la llista de plants
 	add_child(nova_planta)
 	#TODO CANVIAR ECOSYSTEM A BIOME
-	nova_planta.initialize(Ecosystem[biome[selected_plant]], next_id)
+	nova_planta.initialize(Ecosystem[plant_to_spawn], next_id)
 	nova_planta.connect("harvested", self, "on_plant_harvested", [next_id])
+	print("next_id: ", next_id)
 	next_id += 1
+	print("habitat: ", habitat)
 	time_to_next_plant = DELAY
 
 
@@ -70,9 +109,6 @@ func calculate_biome():
 
 		if are_requirements_fulfilled:
 			new_biome.append(plant_name)
-
-	print("NEW BIOME ", new_biome)
-	print("STATISTICS ", statistics)
 	return new_biome
 
 func increase_stats(plant_name, plant_type):
@@ -84,6 +120,7 @@ func increase_stats(plant_name, plant_type):
 	print("Number of species " + str(statistics))
 	
 func on_plant_harvested(id):
+	print(habitat)
 	var plant = habitat[id]
 	#HERE: Play ani of fruit going UP
 
@@ -92,15 +129,13 @@ func on_plant_harvested(id):
 	biome = calculate_biome()
 
 	print("PLANTA COLLIDA")
-	plant.queue_free() # elimina la planta de pantalla
 	habitat.erase(id) # elimina la planta del diccionari
 	yield(get_tree().create_timer(1), "timeout")
-	create_plant()
+	spawn_plant()
 	# emit_signal("to_inventory", plant.tipus Arguments que diguin el tipus de la planta)
 
 	# gestionar inventari: aquí o en funció dedicada? -> Enviar signal a un altre script. 
 	# Caldrà que manager i inventari siguin germans i hi hagi un pare que els gestioni
-
 
 # TODO
 # - crear una variable de classe que sigui una array de textures
