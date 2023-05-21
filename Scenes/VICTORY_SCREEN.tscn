@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Materials/WaterParticles.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/GUI/CONFETTI_0.png" type="Texture" id=2]
@@ -10,8 +10,10 @@
 [ext_resource path="res://Assets/GUI/Button_7.png" type="Texture" id=8]
 [ext_resource path="res://Assets/GUI/Button_7_Hover.png" type="Texture" id=9]
 [ext_resource path="res://Assets/GUI/Button_7_Pressed.png" type="Texture" id=10]
+[ext_resource path="res://Scenes/VICTORY_SCREEN.gd" type="Script" id=11]
 
 [node name="WIN SCREEN" type="Node2D"]
+script = ExtResource( 11 )
 
 [node name="CreditsHeader" type="Label" parent="."]
 anchor_right = 1.0

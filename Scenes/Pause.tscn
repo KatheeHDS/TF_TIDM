@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://Assets/GUI/DEBUG_HELP.png" type="Texture" id=1]
 [ext_resource path="res://Assets/GUI/EMERGENT.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Materials/Montserrat_Bold.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Assets/GUI/Button_1_Hover.png" type="Texture" id=4]
@@ -145,3 +146,8 @@ custom_fonts/font = ExtResource( 3 )
 text = "Almanac"
 align = 1
 valign = 1
+
+[node name="DebugHelp" type="Sprite" parent="."]
+position = Vector2( 1528, 825 )
+scale = Vector2( 0.46747, 0.46747 )
+texture = ExtResource( 1 )

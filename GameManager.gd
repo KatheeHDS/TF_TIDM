@@ -8,11 +8,13 @@ var GameTitle = preload("res://Scenes/Title.tscn")
 var PauseMenu = preload("res://Scenes/Pause.tscn")
 var pause_opened = false
 var HelpScreen = preload("res://Scenes/Help.tscn") 
-# TESTING:
 var CreditsScreen = preload("res://Scenes/Credits.tscn")
 var ConfigScreen = preload("res://Scenes/Options.tscn")
 var GuideScreen = preload("res://Scenes/Almanac.tscn")
 var RoadmapScreen = preload("res://Scenes/Roadmap.tscn")
+#Fixing:
+var VictoryScreen = preload("res://Scenes/VICTORY_SCREEN.tscn")
+
 var default = load("res://Assets/GUI/Cursor/CURSOR_DEFAULT.png")
 
 func _ready():
@@ -44,6 +46,8 @@ func on_game_started():
 	game.name = "game"
 	add_child(game)
 	get_node("title").queue_free()
+	game.get_node("PlantManager").connect("win_state", self, "on_victory_achieved")
+	
 	
 func on_game_exited():
 	print("CLOSING GAME")
@@ -56,6 +60,16 @@ func on_help_seeked():
 	help.name = "help"
 	add_child(help)
 	
+func on_victory_achieved():
+	change_HUD()
+	print("Victory popup?")
+	var win = VictoryScreen.instance()
+	win.name = "win"
+	add_child(win)
+	
+func change_HUD():
+	$game.get_node("InventoryHUD").get_node("TextureRect").texture = load("res://Assets/GUI/INVENTORY_TAB_VICTORY.png")
+	$game.get_node("Background").get_node("Mountain").texture = load("res://Assets/Backgrounds/MOUNTAIN_GREEN.png")
 
 
 func on_almanac_opened():
@@ -109,3 +123,4 @@ func back_to_menu():
 	get_node("game").queue_free()
 	get_node("pause").queue_free()
 	create_main_menu()
+

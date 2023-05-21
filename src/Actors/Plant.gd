@@ -184,7 +184,7 @@ func set_sprite(texture, collision_size):
 	Collision_shape.position.x = 0
 	Collision_shape.position.y = -collision_size.y * 0.5 * scaling
 
-	$WaterParticles.position.y = -collision_size.y
+	$WaterParticles.position.y = -collision_size.y * scaling
 	
 func on_mouse_enter():
 	hovering = true

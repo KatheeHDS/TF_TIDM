@@ -1,6 +1,6 @@
 extends Node
 #Aquí anirà la generació de plantes
-# signal to_inventory
+signal win_state
 
 var Planta = preload("res://src/Actors/Plant.tscn")
 # Diccionari = {"id" : ["nom planta", HP inicial, "tipus", "color"],...} 
@@ -27,6 +27,9 @@ var collision_manager
 
 var play_area = Rect2(Vector2(90, 422), Vector2(1745, 488))
 
+var is_victory_achieved = false
+
+
 func _ready(): 
 	collision_manager = preload("res://Scenes/CollisionManager.tscn").instance()
 	add_child(collision_manager)
@@ -39,15 +42,40 @@ func _ready():
 	spawn_plant()
 	
 func _process(delta):
+	#print("harvested species = ", statistics.size())
+	#print("ecosystem size = ", Ecosystem.size())
 	time_to_next_plant -= delta # TODO comptar temps
 	if time_to_next_plant <= 0 :
 		spawn_plant()
 	# print("temps passat ", time_to_next_plant)
+	
+		
+	if statistics.size() == Ecosystem.size():
+		print("WIN STATE REACHED! NATURE IS HEALING BABEY!")
+		emit_signal("win_state")
+		is_victory_achieved = true
+		
+	
 	if Input.is_action_just_pressed("debug_plant"):
 		spawn_plant()
 	if Input.is_action_just_pressed("debug_victory"):
-		#LAST THING FOR PAC3: show popup victory ta-da when u press la ç debug
-		print("Nature is healing HA!")
+		# show the reaping instructions in help
+		# activate god mode (each letter spawns a different plant on mouse position)
+		# DECIDE: WHAT IS 27TH LETTER? 
+		# victory must raise a is_victory_achieved = true flag in order to unlock the
+		# feature below (reaping)
+		emit_signal("win_state")
+		is_victory_achieved = true
+		print("You cheated! But life won't be contained [Endgame Mode Enabled]")
+	if Input.is_action_just_pressed("debug_reap") && is_victory_achieved:
+		
+		var plant_under_cursor = collision_manager.get_plant_under_cursor()
+		if plant_under_cursor != null:
+			
+			print("You just culled a " + plant_under_cursor["name_plant"] + " for the Greater Good")
+			plant_under_cursor.queue_free()
+			SoundManager.sfx("dry")
+		# Aquesta funció es desbloquejarà quan hagis assolit la victòria
 	if Input.is_action_just_pressed("main_click"):
 		var plant_under_cursor = collision_manager.get_plant_under_cursor()
 		var mouse_position = get_viewport().get_mouse_position()
@@ -130,8 +158,6 @@ func on_plant_harvested(id):
 
 	print("PLANTA COLLIDA")
 	habitat.erase(id) # elimina la planta del diccionari
-	yield(get_tree().create_timer(1), "timeout")
-	spawn_plant()
 	# emit_signal("to_inventory", plant.tipus Arguments que diguin el tipus de la planta)
 
 	# gestionar inventari: aquí o en funció dedicada? -> Enviar signal a un altre script. 
