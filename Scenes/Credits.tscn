@@ -65,14 +65,17 @@ valign = 1
 [node name="CreditsBody" type="Label" parent="TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 0.241
-margin_left = -330.064
-margin_top = 397.627
-margin_right = -113.063
-margin_bottom = 474.987
+margin_left = -311.569
+margin_top = 354.619
+margin_right = -94.5686
+margin_bottom = 531.339
 rect_pivot_offset = Vector2( 255, 98 )
 custom_colors/font_color = Color( 0.54902, 0.443137, 0.686275, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "BGM
+text = "Harvest cursor sprite
+[insta] cuervosolsticio
+
+BGM
 Windswept by Kevin MacLeod
 
 SFX

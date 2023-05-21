@@ -4,7 +4,7 @@ extends Node
 var default = load("res://Assets/GUI/Cursor/CURSOR_DEFAULT.png")
 var point = load("res://Assets/GUI/Cursor/CURSOR_POINT.png")
 var water = load("res://Assets/GUI/Cursor/CURSOR_WATER.png")
-var pick = load("res://Assets/GUI/Cursor/CURSOR_PICK.png")
+var pick = load("res://Assets/GUI/Cursor/CURSOR_PICK.png") #Art By IG @CuervoSolsticio
 var seeds = load("res://Assets/GUI/Cursor/CURSOR_SEEDS.png") # TODO: CHange with seeds
 var prev_cursor = "default"
 
