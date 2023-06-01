@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mixkit-bubble-pop-up-alert-notification-2357.wav-bda8d6a299e004f7d65359b5c97ded0c.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/mixkit-bubble-pop-up-alert-notification-2357.wav"
+dest_files=[ "res://.import/mixkit-bubble-pop-up-alert-notification-2357.wav-bda8d6a299e004f7d65359b5c97ded0c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

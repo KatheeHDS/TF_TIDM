@@ -1,5 +1,8 @@
 extends Actor
 
+class_name Plant
+
+
 signal harvested
 
 export var num_crop = 0 #variable global -> Compta el total de plantes des de l'inici
@@ -127,7 +130,7 @@ func harvest():
 	var animation_transition = Tween.TRANS_CUBIC
 	var animation_easing = Tween.EASE_OUT
 
-	$Tween.interpolate_property(
+	$Tween.interpolate_property( # sprite moves downward
 		self, 
 		"position", 
 		self.position, # valor inicial
@@ -136,7 +139,7 @@ func harvest():
 		animation_transition,
 		animation_easing
 	)
-	$Tween.interpolate_property(
+	$Tween.interpolate_property( # sprite becomes transparent (alpha channel 1 to 0)
 		self, 
 		"modulate",
 		self.modulate,
@@ -145,7 +148,7 @@ func harvest():
 		animation_transition,
 		animation_easing
 	)
-	$Tween.interpolate_property(
+	$Tween.interpolate_property( # sprite becomes smaller
 		self,
 		"scale",
 		self.scale,

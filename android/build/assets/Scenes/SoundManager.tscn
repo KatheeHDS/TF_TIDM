@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/SoundManager.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sounds/mixkit-fish-flapping-2457.wav" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Sounds/mixkit-dry-leaves-rustling-2430.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Sounds/mixkit-game-ball-tap-2073.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Sounds/mixkit-happy-bell-alert-601.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Sounds/mixkit-fast-sword-whoosh-2792.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Sounds/mixkit-quick-jump-arcade-game-239.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Sounds/mixkit-clear-mouse-clicks-2997.wav" type="AudioStream" id=8]
+
+[node name="SoundManager" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="SoundWater" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="SoundPickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="SoundDry" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="SoundSprout" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="SoundGrow" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="SoundClicked" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="SoundError" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )

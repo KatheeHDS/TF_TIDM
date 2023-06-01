@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Morning Mood – Grieg (No Copyright Music).mp3-d1689842ac6d78985935a25a4efe22c1.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Morning Mood – Grieg (No Copyright Music).mp3"
+dest_files=[ "res://.import/Morning Mood – Grieg (No Copyright Music).mp3-d1689842ac6d78985935a25a4efe22c1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

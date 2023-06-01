@@ -1,5 +1,5 @@
 extends Node2D
-
+ # DEAD CODE, UNUSED CODE
 var sprites = [
 	preload("res://Assets/GUI/Clock_0.png"),
 	preload("res://Assets/GUI/Clock_1.png"),

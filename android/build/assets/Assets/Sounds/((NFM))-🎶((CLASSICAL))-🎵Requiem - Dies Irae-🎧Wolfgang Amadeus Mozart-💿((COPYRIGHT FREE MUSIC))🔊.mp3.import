@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/((NFM))-🎶((CLASSICAL))-🎵Requiem - Dies Irae-🎧Wolfgang Amadeus Mozart-💿((COPYRIGHT FREE MUSIC))🔊.mp3-9d3033978fe89f79f56740cb5295aadd.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/((NFM))-🎶((CLASSICAL))-🎵Requiem - Dies Irae-🎧Wolfgang Amadeus Mozart-💿((COPYRIGHT FREE MUSIC))🔊.mp3"
+dest_files=[ "res://.import/((NFM))-🎶((CLASSICAL))-🎵Requiem - Dies Irae-🎧Wolfgang Amadeus Mozart-💿((COPYRIGHT FREE MUSIC))🔊.mp3-9d3033978fe89f79f56740cb5295aadd.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

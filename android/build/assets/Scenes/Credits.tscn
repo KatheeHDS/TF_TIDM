@@ -1,0 +1,125 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Fonts/Hind/Hind-SemiBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/GUI/EMERGENT.png" type="Texture" id=2]
+[ext_resource path="res://Assets/GUI/Button_4_Pressed.png" type="Texture" id=3]
+[ext_resource path="res://Assets/GUI/Button_4_Hover.png" type="Texture" id=4]
+[ext_resource path="res://Assets/GUI/Button_4.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Credits.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/Materials/Montserrat_Bold.tres" type="DynamicFont" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 22
+font_data = ExtResource( 1 )
+
+[node name="Credits" type="Node2D"]
+position = Vector2( 478, 235 )
+script = ExtResource( 6 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = -390.0
+margin_top = -394.0
+margin_right = 846.0
+margin_bottom = 686.0
+rect_scale = Vector2( 1.40579, 1.23231 )
+texture = ExtResource( 2 )
+
+[node name="CreditsHeader" type="Label" parent="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 0.241
+margin_left = -98.8771
+margin_top = 136.33
+margin_right = 118.123
+margin_bottom = 213.69
+rect_pivot_offset = Vector2( 255, 98 )
+custom_colors/font_color = Color( 0.54902, 0.443137, 0.686275, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "Credits"
+align = 1
+valign = 1
+
+[node name="CreditsBody2" type="Label" parent="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 0.241
+margin_left = 93.187
+margin_top = 351.373
+margin_right = 310.188
+margin_bottom = 528.093
+rect_pivot_offset = Vector2( 255, 98 )
+custom_colors/font_color = Color( 0.54902, 0.443137, 0.686275, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "ART & GAME DEV
+[twt]Kath_Art_ic
+
+BETA TESTER TEAM
+[Insta] alejumidrawings
+[Insta] cuervosolsticio
+[Github] gbenejam
+[Insta] kyo_and_yui
+[Insta] milkcowshow
+[Github] setzer22
+"
+align = 1
+valign = 1
+
+[node name="CreditsBody" type="Label" parent="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 0.241
+margin_left = -311.569
+margin_top = 354.619
+margin_right = -94.5686
+margin_bottom = 531.339
+rect_pivot_offset = Vector2( 255, 98 )
+custom_colors/font_color = Color( 0.54902, 0.443137, 0.686275, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Harvest cursor sprite
+[insta] cuervosolsticio
+
+BGM
+Windswept by Kevin MacLeod
+
+SFX
+Mixkit
+
+VFX
+Wind Sway 2D: Maujoe & HungryProton"
+align = 1
+valign = 1
+
+[node name="CreditsFooter" type="Label" parent="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 0.241
+margin_left = -137.29
+margin_top = 676.779
+margin_right = 79.7102
+margin_bottom = 754.139
+rect_pivot_offset = Vector2( 255, 98 )
+custom_colors/font_color = Color( 0.54902, 0.443137, 0.686275, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Thanks for playing!"
+align = 1
+valign = 1
+
+[node name="BackButton" type="TextureButton" parent="."]
+margin_left = 948.0
+margin_top = 576.0
+margin_right = 1458.0
+margin_bottom = 831.0
+rect_scale = Vector2( 0.623208, 0.594567 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+
+[node name="Back" type="Label" parent="BackButton"]
+anchor_right = 1.0
+anchor_bottom = 0.241
+margin_left = -115.843
+margin_top = 69.8026
+margin_right = 101.157
+margin_bottom = 147.163
+rect_pivot_offset = Vector2( 255, 98 )
+custom_colors/font_color = Color( 0.407843, 0.164706, 0.486275, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "Back"
+align = 1
+valign = 1

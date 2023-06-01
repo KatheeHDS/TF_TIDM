@@ -13,6 +13,7 @@
 [ext_resource path="res://Scenes/VICTORY_SCREEN.gd" type="Script" id=11]
 
 [node name="WIN SCREEN" type="Node2D"]
+z_index = 2000
 script = ExtResource( 11 )
 
 [node name="CreditsHeader" type="Label" parent="."]
@@ -146,6 +147,6 @@ margin_bottom = 147.163
 rect_pivot_offset = Vector2( 255, 98 )
 custom_colors/font_color = Color( 0.886275, 0.666667, 0.917647, 1 )
 custom_fonts/font = ExtResource( 7 )
-text = ":)"
+text = "Back"
 align = 1
 valign = 1

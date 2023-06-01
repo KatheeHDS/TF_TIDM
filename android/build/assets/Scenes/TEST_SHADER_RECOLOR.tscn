@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Backgrounds/BASE GAME SCREEN.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Materials/TEST_SHADER_RECOLOR.gdshader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
+shader_param/scale = 1.091
+shader_param/color = Color( 0.0941176, 1, 0.764706, 1 )
+shader_param/flashState = 0.5
+
+[node name="BaseGameScreen" type="Sprite"]
+material = SubResource( 2 )
+position = Vector2( 956, 541 )
+texture = ExtResource( 1 )

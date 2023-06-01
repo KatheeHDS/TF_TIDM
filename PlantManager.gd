@@ -50,7 +50,7 @@ func _process(delta):
 	# print("temps passat ", time_to_next_plant)
 	
 		
-	if statistics.size() == Ecosystem.size():
+	if statistics.size() == Ecosystem.size() and not is_victory_achieved:
 		print("WIN STATE REACHED! NATURE IS HEALING BABEY!")
 		emit_signal("win_state")
 		is_victory_achieved = true

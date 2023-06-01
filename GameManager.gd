@@ -12,7 +12,6 @@ var CreditsScreen = preload("res://Scenes/Credits.tscn")
 var ConfigScreen = preload("res://Scenes/Options.tscn")
 var GuideScreen = preload("res://Scenes/Almanac.tscn")
 var RoadmapScreen = preload("res://Scenes/Roadmap.tscn")
-#Fixing:
 var VictoryScreen = preload("res://Scenes/VICTORY_SCREEN.tscn")
 
 var default = load("res://Assets/GUI/Cursor/CURSOR_DEFAULT.png")
@@ -62,7 +61,7 @@ func on_help_seeked():
 	
 func on_victory_achieved():
 	change_HUD()
-	print("Victory popup?")
+	print("Victory popup")
 	var win = VictoryScreen.instance()
 	win.name = "win"
 	add_child(win)

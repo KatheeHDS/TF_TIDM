@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/background2.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 511.5, 94.625 )
+
+[node name="Middleground" type="Node2D"]
+
+[node name="Biome" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Biome"]
+position = Vector2( 512, 310.625 )
+shape = SubResource( 1 )
+
+[node name="Background2" type="Sprite" parent="Biome/CollisionShape2D"]
+position = Vector2( 0, 0.374969 )
+scale = Vector2( 0.533333, 0.175 )
+texture = ExtResource( 1 )

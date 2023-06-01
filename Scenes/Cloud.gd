@@ -3,9 +3,9 @@ extends Sprite
 onready var speed = rand_range(0.1, 0.5)
 
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	pass # Replace with function body.
+	pass 
 
 #randomize y height?
 func _process(_delta):
