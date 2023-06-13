@@ -3,30 +3,30 @@ extends Actor
 # Class Plant, inherits from class Actor. Manages each individual plant onscreen.
 # Tasks: Create, Scale, Grow and Harvest plants; Animations; Cursor sprite feedback.
 # Sends data to InventoryHUD.gd, PlantManager.gd and requires CursorManager.gd
-# Keeping inline development comments in place as guide for future continued development
+
 
 class_name Plant
 
 
 signal harvested
 
-export var num_crop = 0 #variable global -> Compta el total de plantes des de l'inici
-var num_water = 0 #variable local
+export var num_crop = 0 
+var num_water = 0 
 var sprites = []
-onready var Plant_sprite = $PlantSprite #get_node("PlantSprite")
+onready var Plant_sprite = $PlantSprite 
 onready var Collision_shape = $CollisionShape2D 
 const SCALING_MIN = 0.688
 const SCALING_MAX = 1.5
 const SKY = 422
 
 var name_plant
-var max_water # nombre de clicks
-var max_sun # temps mínim de creixement de la planta
+var max_water 
+var max_sun 
 var collision_sizes
 var scaling
 
-var sunlight = 0 # delta de temps transcorregut (quantitat de sol rebut per la planta)
-var plant_type # variable que desarà el tipus de planta (greenTree)
+var sunlight = 0 
+var plant_type 
 var growth_stage = 1 
 
 var hovering = false
@@ -36,18 +36,18 @@ var is_harvested = false
 
 
 func _ready():
-	assert(connect("mouse_entered", self, "on_mouse_enter") == OK) #connects signal mouse_entered to on_mouse_enter function in this script (self)
+	assert(connect("mouse_entered", self, "on_mouse_enter") == OK) 
 	assert(connect("mouse_exited", self, "on_mouse_exit") == OK)
 	SoundManager.sfx("sprout")
 	
 func initialize(plant_data, plant_id):
 	print(plant_data)
 	
-	self.max_water = plant_data["water"] # nombre de clicks per a creixement total
-	self.max_sun = plant_data["sun"] # nombre de segons per a creixement total
-	self.name_plant = plant_data["name"] #
+	self.max_water = plant_data["water"] 
+	self.max_sun = plant_data["sun"] 
+	self.name_plant = plant_data["name"] 
 	self.plant_type = plant_data["color"] + plant_data["type"]
-	self.num_crop = plant_id #Es una script variable que cal exportar!
+	self.num_crop = plant_id 
 	self.collision_sizes = plant_data["collision_sizes"]
 	self.z_index = int(self.position.y)
 	perspective()	
@@ -122,22 +122,22 @@ func _process(delta):
 
 func harvest():
 	is_harvested = true
-	$CollisionShape2D.disabled = true # prevents spam clicks from affecting this plant
+	$CollisionShape2D.disabled = true
 
 	var animation_duration = 0.5
 	var animation_transition = Tween.TRANS_CUBIC
 	var animation_easing = Tween.EASE_OUT
 
-	$Tween.interpolate_property( # sprite moves downward
+	$Tween.interpolate_property( 
 		self, 
 		"position", 
-		self.position, # valor inicial
-		self.position - Vector2(0, -100), # valor final
+		self.position, 
+		self.position - Vector2(0, -100), 
 		animation_duration,
 		animation_transition,
 		animation_easing
 	)
-	$Tween.interpolate_property( # sprite becomes transparent (alpha channel 1 to 0)
+	$Tween.interpolate_property( 
 		self, 
 		"modulate",
 		self.modulate,
@@ -146,7 +146,7 @@ func harvest():
 		animation_transition,
 		animation_easing
 	)
-	$Tween.interpolate_property( # sprite becomes smaller
+	$Tween.interpolate_property( 
 		self,
 		"scale",
 		self.scale,
@@ -157,7 +157,7 @@ func harvest():
 	)
 	$Tween.start()
 	
-	yield(get_tree().create_timer(animation_duration - 0.2), "timeout") # wait for animation to end
+	yield(get_tree().create_timer(animation_duration - 0.2), "timeout") 
 	emit_signal("harvested")
 	yield(get_tree().create_timer(0.2), "timeout")
 	queue_free()
