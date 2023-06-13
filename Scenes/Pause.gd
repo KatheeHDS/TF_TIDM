@@ -1,5 +1,7 @@
 extends Node2D
 
+# Pause scene manager
+
 signal config_popup
 signal help_popup
 signal almanac_popup

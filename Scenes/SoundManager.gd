@@ -1,7 +1,6 @@
 extends Node2D
 
-func _ready():
-	print("SFX controller ready")
+# Sound effects manager
 
 func sfx(id):
 	if id == "water":

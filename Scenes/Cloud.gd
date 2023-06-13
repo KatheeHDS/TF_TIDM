@@ -1,13 +1,10 @@
 extends Sprite
 
+# Cloud sprite animation manager
+
 onready var speed = rand_range(0.1, 0.5)
 
-
-
-func _ready():
-	pass 
-
-#randomize y height?
+# Sets the position for each cloud and animates it
 func _process(_delta):
 	self.position.x += speed
 	if self.position.x > get_viewport().size.x+250:

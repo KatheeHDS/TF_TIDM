@@ -1,15 +1,19 @@
 extends Node
 
+# Data parser: Reads the content in files unlocks.data and growth.data which are in .csv format
+# Stores them in dictionaries unlocks{} and Ecosystem{} 
+
 func read_unlocks_data():
 	var f = File.new()
 	var err = f.open("res://db/unlocks.data", File.READ)
 	if err != OK:
 		print("Failed to open Unlocks File")
-		assert(false) # this will stop the game
+		assert(false) 
 	var _header = f.get_csv_line(";")
 	var line = f.get_csv_line(";")
 	var unlocks = {}
 	
+	# Read the lines of the csv file until the end of file is reached
 	while not f.eof_reached() :
 		var plant_name = line[0]
 		var plant_unlocks = []
@@ -28,12 +32,11 @@ func read_ecosystem_data():
 	var f = File.new()
 	var err = f.open("res://db/growth.data", File.READ)
 	if err != OK:
-		print("Failed to open Unlocks File")
-		assert(false) # this will stop the game
+		print("Failed to open Ecosystem File")
+		assert(false) 
 	var _header = f.get_csv_line(";")
 	var line = f.get_csv_line(";")
 	var Ecosystem = {}
-	#clau: nom planta: valor {nested diccionari}
 	
 	while not f.eof_reached() :
 		var plant_info = {

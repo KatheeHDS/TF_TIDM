@@ -1,5 +1,7 @@
 extends VBoxContainer
 
+# HUD inventory counter; Used in InventoryHUD.gd
+
 var plant_name
 var count
 

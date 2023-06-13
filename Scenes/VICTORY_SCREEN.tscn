@@ -35,7 +35,6 @@ valign = 1
 [node name="Confetti_0" parent="." instance=ExtResource( 1 )]
 position = Vector2( 113, -100 )
 rotation = 0.00214131
-scale = Vector2( 1, 1 )
 amount = 8
 lifetime = 3.0
 texture = ExtResource( 2 )
@@ -43,7 +42,6 @@ texture = ExtResource( 2 )
 [node name="Confetti_1" parent="." instance=ExtResource( 1 )]
 position = Vector2( 794, -106 )
 rotation = -0.547529
-scale = Vector2( 1, 1 )
 amount = 5
 lifetime = 3.0
 texture = ExtResource( 5 )
@@ -51,7 +49,6 @@ texture = ExtResource( 5 )
 [node name="Confetti_2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1347, -98 )
 rotation = -0.00865158
-scale = Vector2( 1, 1 )
 amount = 5
 lifetime = 3.0
 explosiveness = 0.15
@@ -60,7 +57,6 @@ texture = ExtResource( 6 )
 [node name="Confetti_3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1614, -118 )
 rotation = 0.0234777
-scale = Vector2( 1, 1 )
 amount = 5
 lifetime = 3.0
 speed_scale = 0.5
@@ -69,7 +65,6 @@ texture = ExtResource( 4 )
 [node name="Confetti_4" parent="." instance=ExtResource( 1 )]
 position = Vector2( 933, -85 )
 rotation = -0.547529
-scale = Vector2( 1, 1 )
 amount = 10
 lifetime = 3.0
 randomness = 1.0
@@ -78,7 +73,6 @@ texture = ExtResource( 3 )
 [node name="Confetti_5" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1773.29, -59.9148 )
 rotation = 0.144865
-scale = Vector2( 1, 1 )
 amount = 5
 lifetime = 3.0
 texture = ExtResource( 2 )
@@ -86,7 +80,6 @@ texture = ExtResource( 2 )
 [node name="Confetti_6" parent="." instance=ExtResource( 1 )]
 position = Vector2( 624, -79 )
 rotation = 0.11276
-scale = Vector2( 1, 1 )
 amount = 5
 lifetime = 3.0
 texture = ExtResource( 5 )
@@ -94,7 +87,6 @@ texture = ExtResource( 5 )
 [node name="Confetti_7" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1100, -89 )
 rotation = 0.11276
-scale = Vector2( 1, 1 )
 amount = 5
 lifetime = 3.0
 explosiveness = 0.15
@@ -103,7 +95,6 @@ texture = ExtResource( 6 )
 [node name="Confetti_8" parent="." instance=ExtResource( 1 )]
 position = Vector2( 450, -106 )
 rotation = -0.0167439
-scale = Vector2( 1, 1 )
 amount = 5
 lifetime = 3.0
 speed_scale = 0.5
@@ -112,7 +103,6 @@ texture = ExtResource( 4 )
 [node name="Confetti_10" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1837, -95.0001 )
 rotation = -0.091626
-scale = Vector2( 1, 1 )
 amount = 10
 lifetime = 3.0
 randomness = 1.0
@@ -121,7 +111,6 @@ texture = ExtResource( 3 )
 [node name="Confetti_9" parent="." instance=ExtResource( 1 )]
 position = Vector2( 280, -83 )
 rotation = -0.202883
-scale = Vector2( 1, 1 )
 amount = 10
 lifetime = 3.0
 randomness = 1.0

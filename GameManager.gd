@@ -1,6 +1,6 @@
 extends Node
 
-
+# Game Manager: unifies all processes and manages screens and related scripts.
 
 var GameScene = preload("res://src/Main.tscn")
 var SplashScreen = preload("res://Scenes/Splash.tscn")
@@ -30,11 +30,9 @@ func create_main_menu():
 	var title = GameTitle.instance()
 	title.name = "title"
 	add_child(title)
-	print("menu created!")
 	title.connect("start_game", self, "on_game_started")
 	title.connect("exit_game", self, "on_game_exited")
 	title.connect("help_popup", self, "on_help_seeked")
-	# title.connect("back", self, "on_back_clicked")
 	title.connect("almanac_popup", self, "on_almanac_opened")
 	title.connect("config_popup", self, "on_options_opened")
 	title.connect("credits_popup", self, "on_credits_opened")
@@ -49,7 +47,6 @@ func on_game_started():
 	
 	
 func on_game_exited():
-	print("CLOSING GAME")
 	on_credits_opened()
 	yield(get_tree().create_timer(5.0), "timeout")
 	get_tree().quit()
@@ -61,7 +58,6 @@ func on_help_seeked():
 	
 func on_victory_achieved():
 	change_HUD()
-	print("Victory popup")
 	var win = VictoryScreen.instance()
 	win.name = "win"
 	add_child(win)
@@ -72,14 +68,12 @@ func change_HUD():
 
 
 func on_almanac_opened():
-	print("ALMANAC OPENS NOW")
 	var almanac = GuideScreen.instance()
 	almanac.name = "almanac"
 	add_child(almanac)
 	
 
 func on_options_opened():
-	print("OPTIONS OPENS NOW")
 	var config = ConfigScreen.instance()
 	config.name = "config"
 	add_child(config)
@@ -87,14 +81,12 @@ func on_options_opened():
 
 	
 func on_credits_opened():
-	print("CREDITS OPENS NOW")
 	var credits = CreditsScreen.instance()
 	credits.name = "credits"
 	add_child(credits)
 	
 
 func on_roadmap_opened():
-	print("ROADMAP OPENS NOW")
 	var roadmap = RoadmapScreen.instance()
 	roadmap.name = "roadmap"
 	add_child(roadmap)
@@ -109,11 +101,9 @@ func _unhandled_input(event):
 			pause.connect("config_popup", self, "on_options_opened")
 			pause.connect("almanac_popup", self, "on_almanac_opened")
 			pause.connect("back_menu", self, "back_to_menu")
-			print("Paused")
 			get_tree().paused = true
 		else:
 			get_node("pause").queue_free()
-			print("Playing")
 			get_tree().paused = false
 		 
 		pause_opened = not pause_opened

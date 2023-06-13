@@ -1,5 +1,6 @@
 extends Node
 
+# DISCARDED script. Intended use: Housing and managing Day/night cycle
 
 # Declare member variables here. Examples:
 # var a = 2

@@ -1,4 +1,7 @@
 extends Node2D
+
+# WIP: CUTSCENE. CURRENTLY UNUSED CODE.
+
 # var Song1 = preload("res://Assets/Sounds/Morning Mood – Grieg (No Copyright Music).mp3")
 # var Song2 = preload("res://Assets/Sounds/((NFM))-🎶((CLASSICAL))-🎵Requiem - Dies Irae-🎧Wolfgang Amadeus Mozart-💿((COPYRIGHT FREE MUSIC))🔊.mp3")
 # var Song3 = preload("res://Assets/Sounds/Kevin MacLeod - Windswept.mp3")

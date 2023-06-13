@@ -1,5 +1,7 @@
 extends Particles2D
 
+# Unused code. Kept for Legacy reasons. Cursor water animation is managed on Plant.gd
+# on_watered(), through the inspector in the corresponding scene.
 
 # Declare member variables here. Examples:
 # var a = 2

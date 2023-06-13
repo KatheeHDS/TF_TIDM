@@ -1,18 +1,14 @@
 extends Node
 
-# Load the custom images for the mouse cursor.
+# Cursor sprite manager; Used in Plant.gd
+
 var default = load("res://Assets/GUI/Cursor/CURSOR_DEFAULT.png")
 var point = load("res://Assets/GUI/Cursor/CURSOR_POINT.png")
 var water = load("res://Assets/GUI/Cursor/CURSOR_WATER.png")
 var pick = load("res://Assets/GUI/Cursor/CURSOR_PICK.png") #Art By IG @CuervoSolsticio
-var seeds = load("res://Assets/GUI/Cursor/CURSOR_SEEDS.png") # TODO: CHange with seeds
+var seeds = load("res://Assets/GUI/Cursor/CURSOR_SEEDS.png") 
 var prev_cursor = "default"
-
-# This is used to set a cursor that takes priority over others
 var override
-
-func _ready():
-	pass
 
 func set_cursor_override(cursor_name):
 	override = false
@@ -40,10 +36,9 @@ func set_cursor(cursor_name):
 		Input.set_custom_mouse_cursor(seeds)
 	else:
 		assert(false, "invalid cursor")
-	#afegir variable que guardi l'últim cursor
 	prev_cursor = cursor_name
 
 
 func on_hovered():
 	Input.set_custom_mouse_cursor(point)
-	print("Hoverat")
+

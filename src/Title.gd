@@ -1,5 +1,7 @@
 extends Node2D
 
+# Manages title scene
+
 signal start_game
 signal config_popup
 signal exit_game
@@ -17,36 +19,32 @@ func _ready():
 	assert(get_node("AlmanacButton").connect("pressed", self, "open_almanac") == OK)
 	assert(get_node("FutureButton").connect("pressed", self, "open_roadmap") == OK)
 	assert(get_node("BackButton").connect("pressed", self, "go_back") == OK)
-
-
 	
-func on_game_start(): #OK
+func on_game_start(): 
 	SoundManager.sfx("click")
 	emit_signal("start_game")
 
-func exit_game(): #OK
+func exit_game(): 
 	SoundManager.sfx("click")
 	emit_signal("exit_game")
 
-func open_config(): #OK
+func open_config(): 
 	SoundManager.sfx("click")
 	emit_signal("config_popup")
 
-func open_credits(): #OK
+func open_credits(): 
 	SoundManager.sfx("click")
 	emit_signal("credits_popup")
 
-func open_help(): #OK
+func open_help(): #
 	SoundManager.sfx("click")
 	emit_signal("help_popup")
 
-#TODO
-func open_almanac(): #OK
+func open_almanac(): 
 	SoundManager.sfx("click")
 	emit_signal("almanac_popup")
 
-#TODO (ESTEM A TITLE.GD)
-func open_roadmap():#OK
+func open_roadmap():
 	SoundManager.sfx("click")
 	emit_signal("roadmap_popup")
 	

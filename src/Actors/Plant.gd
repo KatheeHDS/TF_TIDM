@@ -1,5 +1,10 @@
 extends Actor
 
+# Class Plant, inherits from class Actor. Manages each individual plant onscreen.
+# Tasks: Create, Scale, Grow and Harvest plants; Animations; Cursor sprite feedback.
+# Sends data to InventoryHUD.gd, PlantManager.gd and requires CursorManager.gd
+# Keeping inline development comments in place as guide for future continued development
+
 class_name Plant
 
 
@@ -22,7 +27,7 @@ var scaling
 
 var sunlight = 0 # delta de temps transcorregut (quantitat de sol rebut per la planta)
 var plant_type # variable que desarà el tipus de planta (greenTree)
-var growth_stage = 1 # TODO DOCUMENTACIO
+var growth_stage = 1 
 
 var hovering = false
 
@@ -33,8 +38,6 @@ var is_harvested = false
 func _ready():
 	assert(connect("mouse_entered", self, "on_mouse_enter") == OK) #connects signal mouse_entered to on_mouse_enter function in this script (self)
 	assert(connect("mouse_exited", self, "on_mouse_exit") == OK)
-	
-	#PLAY SOUND SPROUT
 	SoundManager.sfx("sprout")
 	
 func initialize(plant_data, plant_id):
@@ -81,27 +84,22 @@ func on_watered():
 	if num_water < max_stage_water:
 		$WaterParticles.emitting = true
 		num_water += 1
-		print("watered ", num_water)
-		# here insert animation shader water particles
-		# PLAY SOUND WATER
 		SoundManager.sfx("water")
 	else:
-		print("no accepta més aigua")
-		# PLAY SOUND DRY
 		SoundManager.sfx("dry")
-		# CursorManager.set_cursor("default")
 		
 		
 func _process(delta):
 	if is_harvested:
 		return
 
-	sunlight += delta # TODO comptar temps
+	sunlight += delta 
 	var required_stage_sun = get_required_sun_amount_for_growth_stage(self.growth_stage)
 	var required_stage_water = get_required_water_amount_for_growth_stage(self.growth_stage)
-	# $Clock.set_amount(sunlight/self.max_sun)
+
 	
 	# Cursor sprites: VISUAL FEEDBACK
+	
 	if hovering:
 		if growth_stage < 4 and num_water < required_stage_water:
 			CursorManager.set_cursor("water")

@@ -1,6 +1,6 @@
 extends Node2D
 
-# TODO: Use this to find a location to spawn new plants without overlapping
+# Mouse manager: returns which plant is the closest, Z-index wise, to the mouse
 
 func get_plant_under_cursor():
 	var state = get_world_2d().direct_space_state
@@ -8,7 +8,7 @@ func get_plant_under_cursor():
 	var results = state.intersect_point(mouse_position)
 
 	if results.size() > 0:
-		# Get the plants from the results
+		# if the mouse is hovering over an actor, determines which actor is the "closest" to the player
 		var closest_plant = null
 		var closest_plant_z_index = 0
 		for result in results:

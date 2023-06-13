@@ -1,4 +1,7 @@
 extends Node2D
+
+# Help scene manager
+
 signal back
 
 func _ready():
@@ -8,5 +11,4 @@ func _ready():
 func go_back():
 	SoundManager.sfx("click")
 	emit_signal("back")
-	print("Going back!")
 	self.queue_free()

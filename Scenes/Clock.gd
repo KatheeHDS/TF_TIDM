@@ -1,5 +1,8 @@
 extends Node2D
- # DEAD CODE, UNUSED CODE
+
+# DEAD CODE, UNUSED CODE. Previously used as: Visual feedback on the sun a plant needs to
+# receive before it can be watered again. Kept for consistency reasons.
+
 var sprites = [
 	preload("res://Assets/GUI/Clock_0.png"),
 	preload("res://Assets/GUI/Clock_1.png"),

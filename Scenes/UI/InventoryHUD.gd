@@ -1,5 +1,7 @@
 extends Control
 
+# HUD Manager. Requires CropCounterWidget.gd library
+
 var CropCounterWidget = preload("res://Scenes/UI/CropCounterWidget.tscn");
 
 var plant_name_to_crop_counter = {}
